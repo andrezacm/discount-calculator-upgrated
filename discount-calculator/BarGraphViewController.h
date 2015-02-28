@@ -1,5 +1,5 @@
 //
-//  CalculatorView.h
+//  BarGraphView.h
 //  discount-calculator
 //
 //  Created by Andreza da Costa Medeiros on 2/27/15.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CalculatorView : UIViewController
+@interface BarGraphViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 @end

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5732C4931AA130FB00E51F95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5732C4921AA130FB00E51F95 /* main.m */; };
 		5732C4961AA130FB00E51F95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5732C4951AA130FB00E51F95 /* AppDelegate.m */; };
-		5732C4991AA130FB00E51F95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5732C4981AA130FB00E51F95 /* ViewController.m */; };
 		5732C49C1AA130FB00E51F95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5732C49A1AA130FB00E51F95 /* Main.storyboard */; };
 		5732C49E1AA130FB00E51F95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5732C49D1AA130FB00E51F95 /* Images.xcassets */; };
 		5732C4A11AA130FB00E51F95 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5732C49F1AA130FB00E51F95 /* LaunchScreen.xib */; };
@@ -34,8 +33,6 @@
 		5732C4921AA130FB00E51F95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5732C4941AA130FB00E51F95 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5732C4951AA130FB00E51F95 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5732C4971AA130FB00E51F95 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5732C4981AA130FB00E51F95 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5732C49B1AA130FB00E51F95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5732C49D1AA130FB00E51F95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5732C4A01AA130FB00E51F95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -89,8 +86,6 @@
 			children = (
 				5732C4941AA130FB00E51F95 /* AppDelegate.h */,
 				5732C4951AA130FB00E51F95 /* AppDelegate.m */,
-				5732C4971AA130FB00E51F95 /* ViewController.h */,
-				5732C4981AA130FB00E51F95 /* ViewController.m */,
 				5732C49A1AA130FB00E51F95 /* Main.storyboard */,
 				5732C49D1AA130FB00E51F95 /* Images.xcassets */,
 				5732C49F1AA130FB00E51F95 /* LaunchScreen.xib */,
@@ -231,7 +226,6 @@
 			files = (
 				5732C4BB1AA132C600E51F95 /* BarGraphViewController.m in Sources */,
 				5732C4B71AA1318700E51F95 /* CalculatorViewController.m in Sources */,
-				5732C4991AA130FB00E51F95 /* ViewController.m in Sources */,
 				5732C4961AA130FB00E51F95 /* AppDelegate.m in Sources */,
 				5732C4931AA130FB00E51F95 /* main.m in Sources */,
 			);

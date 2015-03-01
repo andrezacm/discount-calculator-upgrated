@@ -234,7 +234,7 @@
                         <viewControllerLayoutGuide type="top" id="fLq-CG-9KZ"/>
                         <viewControllerLayoutGuide type="bottom" id="U4U-js-f31"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Fmq-BO-UUl">
+                    <view key="view" contentMode="scaleToFill" id="Fmq-BO-UUl" customClass="BarGraphView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

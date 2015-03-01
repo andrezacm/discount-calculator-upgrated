@@ -15,6 +15,7 @@
   @property(strong, nonatomic) NSDecimalNumber * tax;
   @property(strong, nonatomic) NSDecimalNumber * originalPrice;
   @property(strong, nonatomic) NSDecimalNumber * finalPrice;
+  @property(strong, nonatomic) NSDecimalNumber * discountPrice;
 
   +(Calculator *)initialize;
 
@@ -28,5 +29,6 @@
   -(void)calculateFinalPrice;
   -(NSDecimalNumber *)originalPrice;
   -(NSDecimalNumber *)finalPrice;
+  -(NSDecimalNumber *)discountPrice;
 
 @end

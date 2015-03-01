@@ -132,7 +132,37 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="214" y="285" width="97" height="40"/>
                                 </variation>
+                                <connections>
+                                    <action selector="calculateDiscount:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2Tg-1t-Nj1"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZV-QS-FNA">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="89" y="373" width="222" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aws-o1-5cf">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="89" y="402" width="222" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZE-bS-Md6">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="89" y="431" width="222" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -148,6 +178,9 @@
                                 <exclude reference="fR9-6U-12x"/>
                                 <exclude reference="6ds-Ct-UfK"/>
                                 <exclude reference="r87-Pc-pxn"/>
+                                <exclude reference="mZV-QS-FNA"/>
+                                <exclude reference="aws-o1-5cf"/>
+                                <exclude reference="qZE-bS-Md6"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -163,6 +196,9 @@
                                 <include reference="fR9-6U-12x"/>
                                 <include reference="6ds-Ct-UfK"/>
                                 <include reference="r87-Pc-pxn"/>
+                                <include reference="mZV-QS-FNA"/>
+                                <include reference="aws-o1-5cf"/>
+                                <include reference="qZE-bS-Md6"/>
                             </mask>
                         </variation>
                         <connections>
@@ -170,6 +206,16 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="JY7-Gf-apK"/>
+                    <connections>
+                        <outlet property="discount" destination="e13-Iq-1wn" id="wXI-dc-QfT"/>
+                        <outlet property="discountAdd" destination="fR9-6U-12x" id="QAw-rt-MbO"/>
+                        <outlet property="discountPrice" destination="aws-o1-5cf" id="q2l-0v-peq"/>
+                        <outlet property="dollarsOff" destination="1dX-to-bYC" id="L18-sh-cYl"/>
+                        <outlet property="finalPrice" destination="qZE-bS-Md6" id="oxE-YU-Qan"/>
+                        <outlet property="originalPrice" destination="mZV-QS-FNA" id="c2Q-sS-0fQ"/>
+                        <outlet property="price" destination="tPv-08-dV7" id="CgL-oG-zyv"/>
+                        <outlet property="tax" destination="6ds-Ct-UfK" id="ssc-WC-dPZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="left" id="J7L-cg-Z5a">

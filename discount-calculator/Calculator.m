@@ -10,7 +10,7 @@
 #import "Calculator.h"
 
 //static instance to implement singleton pattern
-Calculator * calculator;
+Calculator * calculator = nil;
 
 @implementation Calculator
 
@@ -19,10 +19,13 @@ Calculator * calculator;
   @synthesize discount;
   @synthesize discountAdd;
   @synthesize tax;
+  @synthesize originalPrice;
+  @synthesize finalPrice;
+  @synthesize discountPrice;
 
 +(Calculator *)initialize {
-  if (self == nil) {
-    calculator = [[Calculator alloc] init];
+  if (calculator == nil) {
+    calculator = [[self alloc] init];
   }
   return calculator;
 }
@@ -48,22 +51,26 @@ Calculator * calculator;
 }
 
 -(NSDecimalNumber *)finalPrice {
-  return self.finalPrice;
+  return finalPrice;
 }
 
 -(NSDecimalNumber *)originalPrice {
-  return self.originalPrice;
+  return originalPrice;
+}
+
+-(NSDecimalNumber *)discountPrice {
+  return discountPrice;
 }
 
 -(void)calculateOriginalPrice {
   //calculate tax
-  NSDecimalNumber * taxValue = [price decimalNumberByMultiplyingBy:tax];
-  self.originalPrice = [taxValue decimalNumberByAdding:price];
+  NSDecimalNumber * taxValue = [price decimalNumberByMultiplyingBy:[tax decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]]];
+  originalPrice = [taxValue decimalNumberByAdding:price];
 }
 
 -(void)calculateFinalPrice {
   //calculate tax
-  NSDecimalNumber * taxValue = [price decimalNumberByMultiplyingBy:tax];
+  NSDecimalNumber * taxValue = [price decimalNumberByMultiplyingBy:[tax decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]]];
   //dollars off
   NSDecimalNumber * dOff     = [price decimalNumberBySubtracting:dollarsOff];
   //discount
@@ -71,9 +78,9 @@ Calculator * calculator;
   NSDecimalNumber * priceDisc= [dOff decimalNumberBySubtracting:disc];
   //Add disnt
   NSDecimalNumber * discAdd  = [priceDisc decimalNumberByMultiplyingBy:[discountAdd decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"100"]]];
-  NSDecimalNumber * priceAdd = [discAdd decimalNumberBySubtracting:disc];
+  discountPrice = [priceDisc decimalNumberBySubtracting:discAdd];
   //Add Tax value
-  self.finalPrice = [priceAdd decimalNumberByAdding:taxValue];
+  finalPrice = [discountPrice decimalNumberByAdding:taxValue];
 }
 
 @end

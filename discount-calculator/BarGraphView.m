@@ -11,6 +11,9 @@
 
 @implementation BarGraphView
 
+  @synthesize discountPrice;
+  @synthesize savedValue;
+
 -(id)initWithFrame:(CGRect)frame {
   NSLog(@"initWithFrame");
   self = [super initWithFrame:frame];
@@ -46,7 +49,7 @@
   //discount price
   CGContextStrokeRect(context, CGRectMake(180, 200, 100, 200));
   
-  NSString * s = @"opa";
+  NSString * s = [@"opa " stringByAppendingString:[discountPrice stringValue]];
   NSDictionary * textAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial" size:18]};
   CGSize size = [s sizeWithAttributes:textAttributes];
   

@@ -10,6 +10,7 @@
 
 @interface BarGraphViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property(strong, nonatomic) NSDecimalNumber * price;
+@property(strong, nonatomic) NSDecimalNumber * discount;
 
 @end

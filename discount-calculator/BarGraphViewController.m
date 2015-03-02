@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "BarGraphViewController.h"
+#import "BarGraphView.h"
 
 @implementation BarGraphViewController
+
+  @synthesize price;
+  @synthesize discount;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
-  
-    self.addressLabel.text = [NSString stringWithFormat:@"%p", self];
-  
+  ((BarGraphView *)self.view).discountPrice = discount;
+  ((BarGraphView *)self.view).savedValue = [price decimalNumberBySubtracting:discount];
 }
 
 - (void)didReceiveMemoryWarning {

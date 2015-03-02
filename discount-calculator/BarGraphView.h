@@ -10,7 +10,7 @@
 
 @interface BarGraphView : UIView
 
-@property(strong, nonatomic)NSDecimalNumber * discountPrice;
-@property(strong, nonatomic)NSDecimalNumber * savedValue;
+@property(strong, nonatomic)NSDecimalNumber * discountPercent;
+@property(strong, nonatomic)NSDecimalNumber * savedPercent;
 
 @end

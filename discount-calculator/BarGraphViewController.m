@@ -12,14 +12,14 @@
 
 @implementation BarGraphViewController
 
-  @synthesize price;
   @synthesize discount;
+  @synthesize originalPrice;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
-  ((BarGraphView *)self.view).discountPrice = discount;
-  ((BarGraphView *)self.view).savedValue = [price decimalNumberBySubtracting:discount];
+  ((BarGraphView *)self.view).discountPercent = [discount decimalNumberByDividingBy:originalPrice];
+  ((BarGraphView *)self.view).savedPercent = [[originalPrice decimalNumberBySubtracting:discount] decimalNumberByDividingBy:originalPrice];
 }
 
 - (void)didReceiveMemoryWarning {

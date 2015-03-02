@@ -11,8 +11,8 @@
 
 @implementation BarGraphView
 
-  @synthesize discountPrice;
-  @synthesize savedValue;
+  @synthesize discountPercent;
+  @synthesize savedPercent;
 
 -(id)initWithFrame:(CGRect)frame {
   NSLog(@"initWithFrame");
@@ -39,17 +39,18 @@
   CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);
   CGContextSetLineWidth(context, 2.0);
   
-  CGRect priceRect = CGRectMake(40, 100, 100, 300);
   //price
+  CGRect priceRect = CGRectMake(40, 100, 100, 300);
   CGContextStrokeRect(context, priceRect);
   
   //price - discount price
-  CGContextStrokeRect(context, CGRectMake(180, 100, 100, 90));
+  float savedHeight = (300 * [savedPercent floatValue]);
+  CGContextStrokeRect(context, CGRectMake(180, 100, 100, savedHeight));
   
   //discount price
-  CGContextStrokeRect(context, CGRectMake(180, 200, 100, 200));
+  CGContextStrokeRect(context, CGRectMake(180, (100 + savedHeight), 100, (300 * [discountPercent floatValue])));
   
-  NSString * s = [@"opa " stringByAppendingString:[discountPrice stringValue]];
+  NSString * s = [@"opa " stringByAppendingString:[discountPercent stringValue]];
   NSDictionary * textAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial" size:18]};
   CGSize size = [s sizeWithAttributes:textAttributes];
   

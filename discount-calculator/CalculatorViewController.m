@@ -40,7 +40,7 @@
   // Pass the selected object to the new view controller.
   BarGraphViewController * barGVC = (BarGraphViewController *)segue.destinationViewController;
   barGVC.discount = calculator.discountPrice;
-  barGVC.price = calculator.originalPrice;
+  barGVC.originalPrice = calculator.originalPrice;
 }
 
 - (IBAction)calculateDiscount:(id)sender {  

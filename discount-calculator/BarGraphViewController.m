@@ -20,6 +20,9 @@
   // Do any additional setup after loading the view, typically from a nib.
   ((BarGraphView *)self.view).discountPercent = [discount decimalNumberByDividingBy:originalPrice];
   ((BarGraphView *)self.view).savedPercent = [[originalPrice decimalNumberBySubtracting:discount] decimalNumberByDividingBy:originalPrice];
+  ((BarGraphView *)self.view).originalPrice = originalPrice;
+  ((BarGraphView *)self.view).discount = discount;
+  ((BarGraphView *)self.view).saved = [originalPrice decimalNumberBySubtracting:discount];
 }
 
 - (void)didReceiveMemoryWarning {

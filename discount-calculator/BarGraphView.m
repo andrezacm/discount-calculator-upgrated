@@ -13,6 +13,9 @@
 
   @synthesize discountPercent;
   @synthesize savedPercent;
+  @synthesize originalPrice;
+  @synthesize discount;
+  @synthesize saved;
 
 -(id)initWithFrame:(CGRect)frame {
   NSLog(@"initWithFrame");
@@ -45,20 +48,40 @@
   
   //price - discount price
   float savedHeight = (300 * [savedPercent floatValue]);
-  CGContextStrokeRect(context, CGRectMake(180, 100, 100, savedHeight));
+  CGRect savedRect = CGRectMake(180, 100, 100, savedHeight);
+  CGContextStrokeRect(context, savedRect);
   
   //discount price
-  CGContextStrokeRect(context, CGRectMake(180, (100 + savedHeight), 100, (300 * [discountPercent floatValue])));
+  CGRect discountRect = CGRectMake(180, (100 + savedHeight), 100, (300 * [discountPercent floatValue]));
+  CGContextStrokeRect(context, discountRect);
   
-  NSString * s = [@"opa " stringByAppendingString:[discountPercent stringValue]];
+  NSDecimalNumber * percent = [NSDecimalNumber decimalNumberWithString:@"100"];
+  
+  NSString * sPrice = [@"$ " stringByAppendingString:[originalPrice stringValue]];
+  [self drawString:sPrice withRect:priceRect];
+  
+  NSString * sDiscount = [[[[@"$ " stringByAppendingString:[discount stringValue]]
+                                   stringByAppendingString:@"\n"]
+                                   stringByAppendingString:[[discountPercent decimalNumberByMultiplyingBy:percent] stringValue]]
+                                   stringByAppendingString:@"%"];
+  [self drawString:sDiscount withRect:discountRect];
+  
+  NSString * sSaved = [[[[@"$ " stringByAppendingString:[saved stringValue]]
+                                stringByAppendingString:@"\n"]
+                                stringByAppendingString:[[savedPercent decimalNumberByMultiplyingBy:percent] stringValue]]
+                                stringByAppendingString:@"%"];
+  [self drawString:sSaved withRect:savedRect];
+}
+
+-(void)drawString:(NSString *)s withRect:(CGRect)rect {
   NSDictionary * textAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial" size:18]};
   CGSize size = [s sizeWithAttributes:textAttributes];
   
-  CGRect textRect = CGRectMake((priceRect.origin.x + 4),
-                                priceRect.origin.y + (priceRect.size.height - size.height)/2,
-                                priceRect.size.width,
-                                (priceRect.size.height - size.height)/2);
-
+  CGRect textRect = CGRectMake((rect.origin.x + 4),
+                               rect.origin.y + (rect.size.height - size.height)/2,
+                               rect.size.width,
+                               (rect.size.height - size.height)/2);
+  
   [s drawInRect:textRect withAttributes:textAttributes];
 }
 

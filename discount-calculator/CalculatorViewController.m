@@ -67,6 +67,15 @@
   [textFields[nextTag] becomeFirstResponder];
 }
 
+- (void)prevClicked: (UIBarButtonItem *) sender {
+  NSArray * textFields = [NSArray arrayWithObjects:self.price, self.dollarsOff, self.discount, self.discountAdd, self.tax, nil];
+  
+  NSInteger nextTag = (sender.tag - 1) % 5;
+  if (nextTag < 0) nextTag = 4;
+  
+  [textFields[nextTag] becomeFirstResponder];
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
   //[textField resignFirstResponder];
 }
@@ -86,7 +95,7 @@
   UIBarButtonItem * prevButton = [[UIBarButtonItem alloc] initWithTitle:@"<"
                                                           style:UIBarButtonItemStyleDone
                                                           target:self
-                                                          action:@selector(doneClicked:)];
+                                                          action:@selector(prevClicked:)];
 
   nextButton.tag = textField.tag;
   prevButton.tag = textField.tag;

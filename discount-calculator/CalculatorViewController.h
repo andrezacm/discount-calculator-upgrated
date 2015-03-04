@@ -19,6 +19,7 @@
 @property(weak, nonatomic) IBOutlet UILabel     * originalPrice;
 @property(weak, nonatomic) IBOutlet UILabel     * discountPrice;
 @property(weak, nonatomic) IBOutlet UILabel     * finalPrice;
+@property(weak, nonatomic) IBOutlet UIButton    * calculateButtom;
 
 @property(strong) Calculator * calculator;
 

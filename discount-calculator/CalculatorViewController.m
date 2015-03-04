@@ -35,6 +35,8 @@
   [self.discountAdd setTag:3];
   [self.tax         setDelegate:self];
   [self.tax         setTag:4];
+  
+  [self.calculateButtom setEnabled:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,11 +106,29 @@
   
   [keyboardCustomizedView setItems:[NSArray arrayWithObjects:doneButton, flexibleSpacer, prevButton, nextButton, nil]];
   [textField setInputAccessoryView:keyboardCustomizedView];
+  
+  //verify if all texts are not empty
+  [self verifyTextFields];
+}
+
+- (void)verifyTextFields {
+  NSArray * textFields = [NSArray arrayWithObjects:self.price, self.dollarsOff, self.discount, self.discountAdd, self.tax, nil];
+  
+  BOOL enable = YES;
+  
+  for(UITextField * textField in textFields) {
+    if (textField.text.length == 0) enable = NO;
+  }
+  [self.calculateButtom setEnabled:enable];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
   NSString * resultString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+  
+  //verify if all texts are not empty
+  [self verifyTextFields];
+  if (textField.tag == 4 && resultString.length > 0) [self.calculateButtom setEnabled:YES];
   
   if (textField == self.price || textField == self.dollarsOff) {
     NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];

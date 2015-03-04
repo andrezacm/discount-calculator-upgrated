@@ -207,6 +207,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="JY7-Gf-apK"/>
                     <connections>
+                        <outlet property="calculateButtom" destination="r87-Pc-pxn" id="8h3-2c-DRN"/>
                         <outlet property="discount" destination="e13-Iq-1wn" id="wXI-dc-QfT"/>
                         <outlet property="discountAdd" destination="fR9-6U-12x" id="QAw-rt-MbO"/>
                         <outlet property="discountPrice" destination="aws-o1-5cf" id="q2l-0v-peq"/>

@@ -118,20 +118,22 @@
     [numberFormatter setMinimumFractionDigits:2];
     [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
     
-    NSString * formattedNumberString;
-    
     NSString * cleanCentString = [[resultString
                                   componentsSeparatedByCharactersInSet:
                                   [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
                                  componentsJoinedByString:@""];
 
     NSDecimalNumber * a = [[NSDecimalNumber decimalNumberWithString:cleanCentString] decimalNumberByMultiplyingByPowerOf10:-2];
-    formattedNumberString = [numberFormatter stringFromNumber:a];
+    NSString * formattedNumberString = [numberFormatter stringFromNumber:a];
     
     textField.text = formattedNumberString;
     return NO;
+  } else {
+    NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber * resultingNumber = [numberFormatter numberFromString:resultString];
+    return resultingNumber != nil;
   }
-  return YES;
 }
 
 #pragma mark - Navigation

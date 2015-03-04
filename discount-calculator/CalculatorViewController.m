@@ -25,18 +25,11 @@
                                         name:UIKeyboardDidShowNotification
                                         object:nil];
   
-  UIToolbar * keyboardDoneButtonView = [[UIToolbar alloc] init];
-  [keyboardDoneButtonView sizeToFit];
-  UIBarButtonItem * doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                          style:UIBarButtonItemStyleBordered target:self
-                                                          action:@selector(doneClicked:)];
-  [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
-  
-  self.price.inputAccessoryView = keyboardDoneButtonView;
-  self.dollarsOff.inputAccessoryView = keyboardDoneButtonView;
-  self.discount.inputAccessoryView = keyboardDoneButtonView;
-  self.discountAdd.inputAccessoryView = keyboardDoneButtonView;
-  self.tax.inputAccessoryView = keyboardDoneButtonView;
+  [self.price setDelegate:self];
+  [self.dollarsOff setDelegate:self];
+  [self.discount setDelegate:self];
+  [self.discountAdd setDelegate:self];
+  [self.tax setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,7 +50,39 @@
 
 - (IBAction)doneClicked:(id)sender {
   NSLog(@"Done Clicked.");
+  [sender resignFirstResponder];
   [self.view endEditing:YES];
+}
+
+- (void)nextClicked: (UIBarButtonItem*) sender {
+  NSArray * textFields = [NSArray arrayWithObjects:self.price, self.dollarsOff, self.discount, self.discountAdd, self.tax, nil];
+  
+  NSInteger nextTag = (sender.tag + 1)%5;
+
+  [textFields[nextTag] becomeFirstResponder];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+  [textField resignFirstResponder];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+  NSLog(@">>>>OPA");
+  UIToolbar * keyboardCustomizedView = [[UIToolbar alloc] init];
+  [keyboardCustomizedView sizeToFit];
+  
+  UIBarButtonItem * doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                  style:UIBarButtonItemStyleBordered target:self
+                                                                 action:@selector(doneClicked:)];
+  UIBarButtonItem * nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next"
+                                                                  style:UIBarButtonItemStyleBordered target:self
+                                                                 action:@selector(nextClicked:)];
+  UIBarButtonItem * prevButton = [[UIBarButtonItem alloc] initWithTitle:@"Prev"
+                                                                  style:UIBarButtonItemStyleBordered target:self
+                                                                 action:@selector(doneClicked:)];
+  
+  [keyboardCustomizedView setItems:[NSArray arrayWithObjects:doneButton, nextButton, prevButton, nil]];
+  [textField setInputAccessoryView:keyboardCustomizedView];
 }
 
 #pragma mark - Navigation

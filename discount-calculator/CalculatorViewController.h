@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Calculator.h"
-#import "KSEnhancedKeyboard.h"
 
-@interface CalculatorViewController : UIViewController
+@interface CalculatorViewController : UIViewController<UITextFieldDelegate>
 
 @property(weak, nonatomic) IBOutlet UITextField * price;
 @property(weak, nonatomic) IBOutlet UITextField * dollarsOff;

@@ -67,21 +67,22 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-  NSLog(@">>>>OPA");
   UIToolbar * keyboardCustomizedView = [[UIToolbar alloc] init];
   [keyboardCustomizedView sizeToFit];
   
   UIBarButtonItem * doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                  style:UIBarButtonItemStyleBordered target:self
-                                                                 action:@selector(doneClicked:)];
-  UIBarButtonItem * nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next"
-                                                                  style:UIBarButtonItemStyleBordered target:self
-                                                                 action:@selector(nextClicked:)];
-  UIBarButtonItem * prevButton = [[UIBarButtonItem alloc] initWithTitle:@"Prev"
-                                                                  style:UIBarButtonItemStyleBordered target:self
-                                                                 action:@selector(doneClicked:)];
+                                                          style:UIBarButtonItemStyleDone target:self
+                                                          action:@selector(doneClicked:)];
+  UIBarButtonItem * nextButton = [[UIBarButtonItem alloc] initWithTitle:@"<"
+                                                          style:UIBarButtonItemStyleDone target:self
+                                                          action:@selector(nextClicked:)];
+  UIBarButtonItem * prevButton = [[UIBarButtonItem alloc] initWithTitle:@">"
+                                                          style:UIBarButtonItemStyleDone target:self
+                                                          action:@selector(doneClicked:)];
   
-  [keyboardCustomizedView setItems:[NSArray arrayWithObjects:doneButton, nextButton, prevButton, nil]];
+  UIBarButtonItem * flexibleSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+  
+  [keyboardCustomizedView setItems:[NSArray arrayWithObjects:doneButton, flexibleSpacer, nextButton, prevButton, nil]];
   [textField setInputAccessoryView:keyboardCustomizedView];
 }
 

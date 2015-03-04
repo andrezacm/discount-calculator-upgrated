@@ -57,7 +57,7 @@
   
   NSDecimalNumber * percent = [NSDecimalNumber decimalNumberWithString:@"100"];
   
-  [self drawString:originalPrice withRect:priceRect];
+  [self drawString:originalPrice withRect:priceRect isSaved:NO];
   
   
   NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
@@ -72,24 +72,29 @@
   NSString * sDiscount = [[[discount stringByAppendingString:@"\n"]
                                      stringByAppendingString:discountP]
                                      stringByAppendingString:@"%"];
-  [self drawString:sDiscount withRect:discountRect];
+  [self drawString:sDiscount withRect:discountRect isSaved:NO];
   
   NSString * sSaved = [[[saved stringByAppendingString:@"\n"]
                                stringByAppendingString:savedP]
                                stringByAppendingString:@"%"];
-  [self drawString:sSaved withRect:savedRect];
+  [self drawString:sSaved withRect:savedRect isSaved:YES];
 }
 
--(void)drawString:(NSString *)s withRect:(CGRect)rect {
-  NSDictionary * textAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial" size:14]};
-  CGSize size = [s sizeWithAttributes:textAttributes];
-  
-  CGRect textRect = CGRectMake((rect.origin.x + 4),
-                               rect.origin.y + (rect.size.height - size.height)/2,
-                               rect.size.width,
-                               (rect.size.height - size.height)/2);
-  
-  [s drawInRect:textRect withAttributes:textAttributes];
+-(void)drawString:(NSString *)s withRect:(CGRect)rect isSaved:(BOOL)saved {
+  if (saved && [savedPercent floatValue] < 0.35) {
+    NSDictionary * textAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial" size:12]};
+    [s drawInRect:rect withAttributes:textAttributes];
+  } else {
+    NSDictionary * textAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial" size:14]};
+    CGSize size = [s sizeWithAttributes:textAttributes];
+    
+    CGRect textRect = CGRectMake((rect.origin.x + 4),
+                                 rect.origin.y + (rect.size.height - size.height)/2,
+                                 rect.size.width,
+                                 (rect.size.height - size.height)/2);
+    
+    [s drawInRect:textRect withAttributes:textAttributes];
+  }
 }
 
 @end

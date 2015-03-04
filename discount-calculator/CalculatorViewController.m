@@ -106,11 +106,37 @@
   [textField setInputAccessoryView:keyboardCustomizedView];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+
+  NSString * resultString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+  
+  if (textField == self.price || textField == self.dollarsOff) {
+    NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [numberFormatter setCurrencySymbol:@"$"];
+    [numberFormatter setMaximumFractionDigits:2];
+    [numberFormatter setMinimumFractionDigits:2];
+    [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+    
+    NSString * formattedNumberString;
+    
+    NSString * cleanCentString = [[resultString
+                                  componentsSeparatedByCharactersInSet:
+                                  [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
+                                 componentsJoinedByString:@""];
+
+    NSDecimalNumber * a = [[NSDecimalNumber decimalNumberWithString:cleanCentString] decimalNumberByMultiplyingByPowerOf10:-2];
+    formattedNumberString = [numberFormatter stringFromNumber:a];
+    
+    textField.text = formattedNumberString;
+  }
+  return NO;
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   // Get the new view controller using [segue destinationViewController].
   // Pass the selected object to the new view controller.
   BarGraphViewController * barGVC = (BarGraphViewController *)segue.destinationViewController;

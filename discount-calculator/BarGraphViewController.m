@@ -12,17 +12,25 @@
 
 @implementation BarGraphViewController
 
-  @synthesize discount;
+  @synthesize finalPrice;
   @synthesize originalPrice;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
-  ((BarGraphView *)self.view).discountPercent = [discount decimalNumberByDividingBy:originalPrice];
-  ((BarGraphView *)self.view).savedPercent = [[originalPrice decimalNumberBySubtracting:discount] decimalNumberByDividingBy:originalPrice];
-  ((BarGraphView *)self.view).originalPrice = originalPrice;
-  ((BarGraphView *)self.view).discount = discount;
-  ((BarGraphView *)self.view).saved = [originalPrice decimalNumberBySubtracting:discount];
+  ((BarGraphView *)self.view).discountPercent = [finalPrice decimalNumberByDividingBy:originalPrice];
+  ((BarGraphView *)self.view).savedPercent = [[originalPrice decimalNumberBySubtracting:finalPrice] decimalNumberByDividingBy:originalPrice];
+  
+  NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+  [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+  [numberFormatter setCurrencySymbol:@"$"];
+  [numberFormatter setMaximumFractionDigits:2];
+  [numberFormatter setMinimumFractionDigits:2];
+  [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+  
+  ((BarGraphView *)self.view).originalPrice = [numberFormatter stringFromNumber:originalPrice];
+  ((BarGraphView *)self.view).discount = [numberFormatter stringFromNumber:finalPrice];
+  ((BarGraphView *)self.view).saved = [numberFormatter stringFromNumber:[originalPrice decimalNumberBySubtracting:finalPrice]];
 }
 
 - (void)didReceiveMemoryWarning {

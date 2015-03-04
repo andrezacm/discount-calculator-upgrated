@@ -10,7 +10,7 @@
 
 @interface BarGraphViewController : UIViewController
 
-@property(strong, nonatomic) NSDecimalNumber * discount;
+@property(strong, nonatomic) NSDecimalNumber * finalPrice;
 @property(strong, nonatomic) NSDecimalNumber * originalPrice;
 
 @end

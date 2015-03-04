@@ -12,8 +12,8 @@
 
 @property(strong, nonatomic)NSDecimalNumber * discountPercent;
 @property(strong, nonatomic)NSDecimalNumber * savedPercent;
-@property(strong, nonatomic)NSDecimalNumber * originalPrice;
-@property(strong, nonatomic)NSDecimalNumber * discount;
-@property(strong, nonatomic)NSDecimalNumber * saved;
+@property(strong, nonatomic)NSString        * originalPrice;
+@property(strong, nonatomic)NSString        * discount;
+@property(strong, nonatomic)NSString        * saved;
 
 @end

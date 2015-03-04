@@ -57,24 +57,31 @@
   
   NSDecimalNumber * percent = [NSDecimalNumber decimalNumberWithString:@"100"];
   
-  NSString * sPrice = [@"$ " stringByAppendingString:[originalPrice stringValue]];
-  [self drawString:sPrice withRect:priceRect];
+  [self drawString:originalPrice withRect:priceRect];
   
-  NSString * sDiscount = [[[[@"$ " stringByAppendingString:[discount stringValue]]
-                                   stringByAppendingString:@"\n"]
-                                   stringByAppendingString:[[discountPercent decimalNumberByMultiplyingBy:percent] stringValue]]
-                                   stringByAppendingString:@"%"];
+  
+  NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+  [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+  [numberFormatter setMaximumFractionDigits:2];
+  [numberFormatter setMinimumFractionDigits:2];
+  [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+  
+  NSString * discountP = [numberFormatter stringFromNumber:[discountPercent decimalNumberByMultiplyingBy:percent]];
+  NSString * savedP    = [numberFormatter stringFromNumber:[savedPercent decimalNumberByMultiplyingBy:percent]];
+  
+  NSString * sDiscount = [[[discount stringByAppendingString:@"\n"]
+                                     stringByAppendingString:discountP]
+                                     stringByAppendingString:@"%"];
   [self drawString:sDiscount withRect:discountRect];
   
-  NSString * sSaved = [[[[@"$ " stringByAppendingString:[saved stringValue]]
-                                stringByAppendingString:@"\n"]
-                                stringByAppendingString:[[savedPercent decimalNumberByMultiplyingBy:percent] stringValue]]
-                                stringByAppendingString:@"%"];
+  NSString * sSaved = [[[saved stringByAppendingString:@"\n"]
+                               stringByAppendingString:savedP]
+                               stringByAppendingString:@"%"];
   [self drawString:sSaved withRect:savedRect];
 }
 
 -(void)drawString:(NSString *)s withRect:(CGRect)rect {
-  NSDictionary * textAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial" size:18]};
+  NSDictionary * textAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial" size:14]};
   CGSize size = [s sizeWithAttributes:textAttributes];
   
   CGRect textRect = CGRectMake((rect.origin.x + 4),

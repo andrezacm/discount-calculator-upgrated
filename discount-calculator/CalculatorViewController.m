@@ -124,6 +124,7 @@
                                  componentsJoinedByString:@""];
 
     NSDecimalNumber * a = [[NSDecimalNumber decimalNumberWithString:cleanCentString] decimalNumberByMultiplyingByPowerOf10:-2];
+    
     NSString * formattedNumberString = [numberFormatter stringFromNumber:a];
     
     textField.text = formattedNumberString;
@@ -143,7 +144,7 @@
   // Get the new view controller using [segue destinationViewController].
   // Pass the selected object to the new view controller.
   BarGraphViewController * barGVC = (BarGraphViewController *)segue.destinationViewController;
-  barGVC.discount = calculator.discountPrice;
+  barGVC.finalPrice = calculator.finalPrice;
   barGVC.originalPrice = calculator.originalPrice;
 }
 
@@ -151,18 +152,35 @@
   //Dismiss keyboard
   [[self view] endEditing:YES];
   
-  [calculator setPrice:[NSDecimalNumber decimalNumberWithString:_price.text]];
-  [calculator setDollarsOff:[NSDecimalNumber decimalNumberWithString:_dollarsOff.text]];
-  [calculator setDiscount:[NSDecimalNumber decimalNumberWithString:_discount.text]];
-  [calculator setDiscountAdd:[NSDecimalNumber decimalNumberWithString:_discountAdd.text]];
-  [calculator setTax:[NSDecimalNumber decimalNumberWithString:_tax.text]];
+  [calculator setPrice:       [self formatTextForModel:_price]];
+  [calculator setDollarsOff:  [self formatTextForModel:_dollarsOff]];
+  [calculator setDiscount:    [NSDecimalNumber decimalNumberWithString:_discount.text]];
+  [calculator setDiscountAdd: [NSDecimalNumber decimalNumberWithString:_discountAdd.text]];
+  [calculator setTax:         [NSDecimalNumber decimalNumberWithString:_tax.text]];
   
   [calculator calculateOriginalPrice];
   [calculator calculateFinalPrice];
   
-  _originalPrice.text = [@"Original Price: $" stringByAppendingString:[calculator.originalPrice stringValue]];
-  _discountPrice.text = [@"Discount Price: $" stringByAppendingString:[calculator.discountPrice stringValue]];
-  _finalPrice.text = [@"Final Price (with tax): $" stringByAppendingString:[calculator.finalPrice stringValue]];
+  NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+  [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+  [numberFormatter setCurrencySymbol:@"$"];
+  [numberFormatter setMaximumFractionDigits:2];
+  [numberFormatter setMinimumFractionDigits:2];
+  [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+  
+  _originalPrice.text = [@"Original Price: " stringByAppendingString:[numberFormatter stringFromNumber:calculator.originalPrice]];
+  _discountPrice.text = [@"Discount Price: " stringByAppendingString:[numberFormatter stringFromNumber:calculator.discountPrice]];
+  _finalPrice.text = [@"Final Price (with tax): " stringByAppendingString:[numberFormatter stringFromNumber:calculator.finalPrice]];
+}
+
+- (NSDecimalNumber *)formatTextForModel:(UITextField *)textField {
+  NSString * cleanCentString = [[textField.text
+                                 componentsSeparatedByCharactersInSet:
+                                 [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
+                                componentsJoinedByString:@""];
+  
+  NSDecimalNumber * a = [[NSDecimalNumber decimalNumberWithString:cleanCentString] decimalNumberByMultiplyingByPowerOf10:-2];
+  return a;
 }
 
 @end

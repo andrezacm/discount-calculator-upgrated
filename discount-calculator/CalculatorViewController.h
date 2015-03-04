@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Calculator.h"
+#import "KSEnhancedKeyboard.h"
 
 @interface CalculatorViewController : UIViewController
 
@@ -23,6 +24,5 @@
 @property(strong) Calculator * calculator;
 
 - (IBAction)calculateDiscount:(id)sender;
-
 
 @end

@@ -19,6 +19,24 @@
   // Do any additional setup after loading the view, typically from a nib.
   
   calculator = [Calculator initialize];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                        selector:@selector(keyboardDidShow:)
+                                        name:UIKeyboardDidShowNotification
+                                        object:nil];
+  
+  UIToolbar * keyboardDoneButtonView = [[UIToolbar alloc] init];
+  [keyboardDoneButtonView sizeToFit];
+  UIBarButtonItem * doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                          style:UIBarButtonItemStyleBordered target:self
+                                                          action:@selector(doneClicked:)];
+  [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
+  
+  self.price.inputAccessoryView = keyboardDoneButtonView;
+  self.dollarsOff.inputAccessoryView = keyboardDoneButtonView;
+  self.discount.inputAccessoryView = keyboardDoneButtonView;
+  self.discountAdd.inputAccessoryView = keyboardDoneButtonView;
+  self.tax.inputAccessoryView = keyboardDoneButtonView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +47,17 @@
 // Dismiss keyboard by touching outside
 - (void) touchesBegan:(NSSet * )touches withEvent:(UIEvent * )event {
   [[self view] endEditing:YES];
+}
+
+- (void) keyboardDidShow:(NSNotification *)notification {
+  //set scroll view
+  UIScrollView * tempScrollView = (UIScrollView *)self.view;
+  tempScrollView.contentSize = CGSizeMake(250, 750);
+}
+
+- (IBAction)doneClicked:(id)sender {
+  NSLog(@"Done Clicked.");
+  [self.view endEditing:YES];
 }
 
 #pragma mark - Navigation
@@ -43,7 +72,10 @@
   barGVC.originalPrice = calculator.originalPrice;
 }
 
-- (IBAction)calculateDiscount:(id)sender {  
+- (IBAction)calculateDiscount:(id)sender {
+  //Dismiss keyboard
+  [[self view] endEditing:YES];
+  
   [calculator setPrice:[NSDecimalNumber decimalNumberWithString:_price.text]];
   [calculator setDollarsOff:[NSDecimalNumber decimalNumberWithString:_dollarsOff.text]];
   [calculator setDiscount:[NSDecimalNumber decimalNumberWithString:_discount.text]];

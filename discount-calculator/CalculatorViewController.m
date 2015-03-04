@@ -129,8 +129,9 @@
     formattedNumberString = [numberFormatter stringFromNumber:a];
     
     textField.text = formattedNumberString;
+    return NO;
   }
-  return NO;
+  return YES;
 }
 
 #pragma mark - Navigation

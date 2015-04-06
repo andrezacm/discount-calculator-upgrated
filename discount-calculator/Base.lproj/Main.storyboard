@@ -252,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="1003.5" y="136"/>
         </scene>
-        <!--Calculator View Controller-->
+        <!--Home Currency View Controller-->
         <scene sceneID="K5w-Qh-I9p">
             <objects>
-                <viewController id="Qdy-SB-eyl" customClass="CalculatorViewController" sceneMemberID="viewController">
+                <viewController id="Qdy-SB-eyl" customClass="HomeCurrencyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o2e-uY-oJR"/>
                         <viewControllerLayoutGuide type="bottom" id="Qp6-he-2RQ"/>

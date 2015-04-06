@@ -15,6 +15,7 @@
 		5732C4AD1AA130FB00E51F95 /* discount_calculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5732C4AC1AA130FB00E51F95 /* discount_calculatorTests.m */; };
 		5732C4B71AA1318700E51F95 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5732C4B61AA1318700E51F95 /* CalculatorViewController.m */; };
 		5732C4BB1AA132C600E51F95 /* BarGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5732C4BA1AA132C600E51F95 /* BarGraphViewController.m */; };
+		576A26D71AD2429500A1BA56 /* HomeCurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A26D61AD2429500A1BA56 /* HomeCurrencyViewController.m */; };
 		576A2E871AA18CE900B36F71 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A2E861AA18CE900B36F71 /* Calculator.m */; };
 		576A2E8B1AA2D81900B36F71 /* BarGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A2E8A1AA2D81900B36F71 /* BarGraphView.m */; };
 		5789F62F1AD2269E00C4FD72 /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5789F62E1AD2269E00C4FD72 /* CurrencyViewController.m */; };
@@ -46,6 +47,8 @@
 		5732C4B81AA131A200E51F95 /* CalculatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
 		5732C4B91AA132A800E51F95 /* BarGraphViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarGraphViewController.h; sourceTree = "<group>"; };
 		5732C4BA1AA132C600E51F95 /* BarGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarGraphViewController.m; sourceTree = "<group>"; };
+		576A26D51AD2427800A1BA56 /* HomeCurrencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCurrencyViewController.h; sourceTree = "<group>"; };
+		576A26D61AD2429500A1BA56 /* HomeCurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCurrencyViewController.m; sourceTree = "<group>"; };
 		576A2E851AA1894E00B36F71 /* Calculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		576A2E861AA18CE900B36F71 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		576A2E891AA2D7CF00B36F71 /* BarGraphView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarGraphView.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 				576A2E8A1AA2D81900B36F71 /* BarGraphView.m */,
 				5789F62D1AD2267600C4FD72 /* CurrencyViewController.h */,
 				5789F62E1AD2269E00C4FD72 /* CurrencyViewController.m */,
+				576A26D51AD2427800A1BA56 /* HomeCurrencyViewController.h */,
+				576A26D61AD2429500A1BA56 /* HomeCurrencyViewController.m */,
 			);
 			path = "discount-calculator";
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 			files = (
 				5732C4BB1AA132C600E51F95 /* BarGraphViewController.m in Sources */,
 				5732C4B71AA1318700E51F95 /* CalculatorViewController.m in Sources */,
+				576A26D71AD2429500A1BA56 /* HomeCurrencyViewController.m in Sources */,
 				5732C4961AA130FB00E51F95 /* AppDelegate.m in Sources */,
 				5789F62F1AD2269E00C4FD72 /* CurrencyViewController.m in Sources */,
 				5732C4931AA130FB00E51F95 /* main.m in Sources */,

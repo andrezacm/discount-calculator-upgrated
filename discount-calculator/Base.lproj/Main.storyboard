@@ -203,6 +203,7 @@
                         </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="J7L-cg-Z5a" appends="YES" id="lrA-f1-hAS"/>
+                            <outletCollection property="gestureRecognizers" destination="58o-iS-eUB" appends="YES" id="aH3-BB-F0u"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="JY7-Gf-apK"/>
@@ -222,6 +223,11 @@
                 <swipeGestureRecognizer direction="left" id="J7L-cg-Z5a">
                     <connections>
                         <segue destination="m32-Ob-1Up" kind="show" id="8li-s7-aIt"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="58o-iS-eUB">
+                    <connections>
+                        <segue destination="Qdy-SB-eyl" kind="show" id="3ub-Wz-ubU"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -245,6 +251,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86h-at-1IK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1003.5" y="136"/>
+        </scene>
+        <!--Calculator View Controller-->
+        <scene sceneID="K5w-Qh-I9p">
+            <objects>
+                <viewController id="Qdy-SB-eyl" customClass="CalculatorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o2e-uY-oJR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qp6-he-2RQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ofu-28-Adl">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D62-1j-eNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1003.5" y="884"/>
         </scene>
     </scenes>
 </document>

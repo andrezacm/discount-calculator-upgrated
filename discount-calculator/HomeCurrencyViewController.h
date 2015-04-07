@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeCurrencyViewController : UIViewController
+@interface HomeCurrencyViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) NSArray * tableData;
 
 @end

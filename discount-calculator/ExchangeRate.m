@@ -90,7 +90,7 @@
       if ([unknownObject isKindOfClass:[NSDictionary class]]) {
         NSDictionary * exchangeRateDict = unknownObject;
         NSDictionary * results = [[[exchangeRateDict valueForKey:@"query"] valueForKey:@"results"] valueForKey:@"rate"];
-        self.rate = @([[results objectForKey:@"rate"] floatValue]);
+        self.rate = @([[results objectForKey:@"Rate"] floatValue]);
         self.lastFetchedOn = [NSDate date];
       } else {
         return NO;

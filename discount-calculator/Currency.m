@@ -28,7 +28,19 @@ Currency * _secretCurrencies[11];
   @synthesize formatter;
 
 -(Currency *)initWithEntity:(NSString *)theEntity currency:(NSString *)aCurrency code:(NSString *)theCode decimalPlaces:(int)places symbol:(NSString *)sym {
-  //TODO
+  
+  entity    = theEntity;
+  currency  = aCurrency;
+  code      = theCode;
+  symbol    = sym;
+  
+  NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+  [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+  [numberFormatter setCurrencySymbol:sym];
+  [numberFormatter setMaximumFractionDigits:places];
+  [numberFormatter setMinimumFractionDigits:places];
+  formatter = numberFormatter;
+  
   return self;
 }
 

@@ -40,4 +40,21 @@ Currency * _secretCurrencies[11];
   return _secretCurrencies[denmark];
 }
 
+// INDIA	Indian Rupee	INR	356	2
++(Currency *)theIndianRupee {
+  if (_secretCurrencies[india] == nil) {
+    _secretCurrencies[india] = [[Currency alloc] initWithEntity:@"INDIA" currency:@"Indian Rupee" code:@"INR" decimalPlaces:2 symbol:@"₹"];
+  }
+  return _secretCurrencies[india];
+}
+
+// UNITED KINGDOM	Pound Sterling	GBP	826	2
++(Currency *)theBritishPound {
+  if (_secretCurrencies[pound] == nil) {
+    _secretCurrencies[pound] = [[Currency alloc] initWithEntity:@"UNITED KINGDOM" currency:@"Pound Sterling" code:@"GBP" decimalPlaces:2 symbol:@"£"];
+  }
+  return _secretCurrencies[pound];
+}
+
+
 @end

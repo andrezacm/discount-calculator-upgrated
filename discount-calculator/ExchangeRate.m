@@ -68,7 +68,8 @@
   
   /*http://query.yahooapis.com/v1/public/yql?q=select%20%2a%20from%20yahoo.finance.xchange%20where%20pair%20in%20%28%22USDEUR%22%29&env=store://datatables.org/alltableswithkeys
   */
-  NSString * yqlString = [NSString stringWithFormat:@"select * from yahoo.finance.xchange where pair in %28%22%@%@%22%29&env=store://datatables.org/alltableswithkeys", self.srcCurrency.code, self.dstCurrency.code];
+  
+  NSString * yqlString = [NSString stringWithFormat:@"select * from yahoo.finance.xchange where pair in (\"%@%@\")&env=store://datatables.org/alltableswithkeys&format=json", self.srcCurrency.code, self.dstCurrency.code];
   
   //NSString * urlString = [NSString stringWithFormat:@"http://.../yql?q=%@...", [yqlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
   

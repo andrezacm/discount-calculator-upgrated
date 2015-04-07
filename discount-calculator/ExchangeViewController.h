@@ -17,6 +17,4 @@
 @property (nonatomic, strong) Currency * homeCurrency;
 @property (nonatomic, strong) Currency * foreignCurrency;
 
-
-
 @end

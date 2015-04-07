@@ -18,5 +18,5 @@
   @property (retain) NSDecimalNumberHandler * decimalHandler;
 
 -(ExchangeRate *)initWithSrcCurrency:(Currency *)aSrc destination:(Currency *)aDst;
-
+-(BOOL)update;
 @end

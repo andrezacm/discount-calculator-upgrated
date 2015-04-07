@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ExchangeViewController.h"
+#import "ExchangeRate.h"
 
 @implementation ExchangeViewController
 
@@ -34,6 +35,12 @@
   [self.foreignCurrencyValue sizeToFit];
   self.foreignCurrencyValue.backgroundColor = [UIColor redColor];
   [self.view addSubview:self.foreignCurrencyValue];
+  
+  ExchangeRate * exchange = [[ExchangeRate alloc] initWithSrcCurrency:homeCurrency destination:foreignCurrency];
+  
+  [exchange update];
+  
+  NSLog(@"OPA >>%@", exchange.rate);
 }
 
 - (void)didReceiveMemoryWarning {

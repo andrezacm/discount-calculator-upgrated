@@ -56,5 +56,24 @@ Currency * _secretCurrencies[11];
   return _secretCurrencies[pound];
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+  [coder encodeObject:entity forKey:@"entity"];
+  [coder encodeObject:currency forKey:@"currency"];
+  [coder encodeObject:code forKey:@"code"];
+  [coder encodeObject:symbol forKey:@"symbol"];
+  [coder encodeObject:formatter forKey:@"formatter"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+  self = [self init];
+  
+  entity    = [coder decodeObjectForKey:@"entity"];
+  currency  = [coder decodeObjectForKey:@"currency"];
+  code      = [coder decodeObjectForKey:@"code"];
+  symbol    = [coder decodeObjectForKey:@"symbol"];
+  formatter = [coder decodeObjectForKey:@"formatter"];
+  
+  return self;
+}
 
 @end

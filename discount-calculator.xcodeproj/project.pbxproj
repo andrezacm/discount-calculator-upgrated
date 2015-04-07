@@ -19,6 +19,7 @@
 		576A26DA1AD2755300A1BA56 /* ForeignCurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A26D91AD2755300A1BA56 /* ForeignCurrencyViewController.m */; };
 		576A26DF1AD27D1700A1BA56 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A26DC1AD27D1700A1BA56 /* Currency.m */; };
 		576A26E01AD27D1700A1BA56 /* ExchangeRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A26DE1AD27D1700A1BA56 /* ExchangeRate.m */; };
+		576A26E31AD454A000A1BA56 /* ExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A26E21AD454A000A1BA56 /* ExchangeViewController.m */; };
 		576A2E871AA18CE900B36F71 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A2E861AA18CE900B36F71 /* Calculator.m */; };
 		576A2E8B1AA2D81900B36F71 /* BarGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A2E8A1AA2D81900B36F71 /* BarGraphView.m */; };
 		5789F62F1AD2269E00C4FD72 /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5789F62E1AD2269E00C4FD72 /* CurrencyViewController.m */; };
@@ -58,6 +59,8 @@
 		576A26DC1AD27D1700A1BA56 /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		576A26DD1AD27D1700A1BA56 /* ExchangeRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeRate.h; sourceTree = "<group>"; };
 		576A26DE1AD27D1700A1BA56 /* ExchangeRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeRate.m; sourceTree = "<group>"; };
+		576A26E11AD4549300A1BA56 /* ExchangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExchangeViewController.h; sourceTree = "<group>"; };
+		576A26E21AD454A000A1BA56 /* ExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeViewController.m; sourceTree = "<group>"; };
 		576A2E851AA1894E00B36F71 /* Calculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		576A2E861AA18CE900B36F71 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		576A2E891AA2D7CF00B36F71 /* BarGraphView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarGraphView.h; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				576A26D61AD2429500A1BA56 /* HomeCurrencyViewController.m */,
 				576A26D81AD2754000A1BA56 /* ForeignCurrencyViewController.h */,
 				576A26D91AD2755300A1BA56 /* ForeignCurrencyViewController.m */,
+				576A26E11AD4549300A1BA56 /* ExchangeViewController.h */,
+				576A26E21AD454A000A1BA56 /* ExchangeViewController.m */,
 			);
 			path = "discount-calculator";
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				576A26E01AD27D1700A1BA56 /* ExchangeRate.m in Sources */,
+				576A26E31AD454A000A1BA56 /* ExchangeViewController.m in Sources */,
 				5732C4BB1AA132C600E51F95 /* BarGraphViewController.m in Sources */,
 				5732C4B71AA1318700E51F95 /* CalculatorViewController.m in Sources */,
 				576A26D71AD2429500A1BA56 /* HomeCurrencyViewController.m in Sources */,

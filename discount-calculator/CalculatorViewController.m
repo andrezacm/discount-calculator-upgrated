@@ -163,9 +163,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   // Get the new view controller using [segue destinationViewController].
   // Pass the selected object to the new view controller.
-  BarGraphViewController * barGVC = (BarGraphViewController *)segue.destinationViewController;
-  barGVC.finalPrice = calculator.finalPrice;
-  barGVC.originalPrice = calculator.originalPrice;
+  
+  if([segue.destinationViewController isKindOfClass:[BarGraphViewController class]]) {
+    BarGraphViewController * barGVC = (BarGraphViewController *)segue.destinationViewController;
+    barGVC.finalPrice = calculator.finalPrice;
+    barGVC.originalPrice = calculator.originalPrice;
+  }
 }
 
 - (IBAction)calculateDiscount:(id)sender {

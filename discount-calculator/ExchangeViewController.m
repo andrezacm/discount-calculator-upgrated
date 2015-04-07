@@ -40,7 +40,6 @@
   
   [exchange update];
   
-  NSLog(@"OPA >>%@", exchange.rate);
 }
 
 - (void)didReceiveMemoryWarning {

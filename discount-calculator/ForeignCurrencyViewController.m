@@ -38,8 +38,6 @@
   [tableView reloadData];
   
   self.view = tableView;
-    
-  NSLog(@">>> %@", homeCurrency.currency);
 }
 
 - (void)didReceiveMemoryWarning {

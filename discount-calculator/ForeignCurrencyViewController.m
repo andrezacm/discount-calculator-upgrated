@@ -11,6 +11,10 @@
 
 @implementation ForeignCurrencyViewController
 
+@synthesize tableData;
+@synthesize homeCurrency;
+@synthesize foreignCurrency;
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
@@ -33,8 +37,8 @@
   [tableView reloadData];
   
   self.view = tableView;
-  
-  self.tableData = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", nil];
+    
+  NSLog(@">>> %@", homeCurrency.currency);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,7 +59,8 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
   }
   
-  cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
+  cell.textLabel.text = [[self.tableData objectAtIndex:indexPath.row] currency];
+  
   return cell;
 }
 

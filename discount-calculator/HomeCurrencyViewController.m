@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "HomeCurrencyViewController.h"
 #import "ForeignCurrencyViewController.h"
+#import "Currency.h"
 
 @implementation HomeCurrencyViewController
 
@@ -35,7 +36,7 @@
   
   self.view = tableView;
   
-  self.tableData = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
+  self.tableData = [NSMutableArray arrayWithObjects: [Currency theBritishPound], [Currency theDanishKroner], [Currency theIndianRupee], nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +57,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
   }
   
-  cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
+  cell.textLabel.text = [[self.tableData objectAtIndex:indexPath.row] currency];
   return cell;
 }
 
@@ -64,6 +65,10 @@
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
   ForeignCurrencyViewController * foreignCurrencyController = [[ForeignCurrencyViewController alloc] init];
   //trailsController.selectedRegion = [regions objectAtIndex:indexPath.row];
+  NSMutableArray * temp = [NSMutableArray arrayWithArray:self.tableData];
+  [temp removeObject:[self.tableData objectAtIndex:indexPath.row]];
+  foreignCurrencyController.tableData = temp;
+  foreignCurrencyController.homeCurrency = [self.tableData objectAtIndex:indexPath.row];
   [[self navigationController] pushViewController:foreignCurrencyController animated:YES];
 }
 

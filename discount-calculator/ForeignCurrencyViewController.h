@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Currency.h"
 
 @interface ForeignCurrencyViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray * tableData;
+@property (nonatomic, strong) NSMutableArray * tableData;
+@property (nonatomic, strong) Currency * homeCurrency;
+@property (nonatomic, strong) Currency * foreignCurrency;
 
 @end

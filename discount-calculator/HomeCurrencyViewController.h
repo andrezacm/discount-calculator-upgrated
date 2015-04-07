@@ -10,6 +10,6 @@
 
 @interface HomeCurrencyViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray * tableData;
+@property (nonatomic, strong) NSMutableArray * tableData;
 
 @end

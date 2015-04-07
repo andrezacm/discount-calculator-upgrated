@@ -25,6 +25,7 @@ Currency * _secretCurrencies[11];
   @synthesize currency;
   @synthesize code;
   @synthesize symbol;
+  @synthesize minorUnit;
   @synthesize formatter;
 
 -(Currency *)initWithEntity:(NSString *)theEntity currency:(NSString *)aCurrency code:(NSString *)theCode decimalPlaces:(int)places symbol:(NSString *)sym {
@@ -33,6 +34,7 @@ Currency * _secretCurrencies[11];
   currency  = aCurrency;
   code      = theCode;
   symbol    = sym;
+  minorUnit = [NSNumber numberWithInt:places];
   
   NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
   [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
@@ -69,10 +71,11 @@ Currency * _secretCurrencies[11];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-  [coder encodeObject:entity forKey:@"entity"];
-  [coder encodeObject:currency forKey:@"currency"];
-  [coder encodeObject:code forKey:@"code"];
-  [coder encodeObject:symbol forKey:@"symbol"];
+  [coder encodeObject:entity    forKey:@"entity"];
+  [coder encodeObject:currency  forKey:@"currency"];
+  [coder encodeObject:code      forKey:@"code"];
+  [coder encodeObject:symbol    forKey:@"symbol"];
+  [coder encodeObject:minorUnit forKey:@"minorUnit"];
   [coder encodeObject:formatter forKey:@"formatter"];
 }
 
@@ -83,6 +86,7 @@ Currency * _secretCurrencies[11];
   currency  = [coder decodeObjectForKey:@"currency"];
   code      = [coder decodeObjectForKey:@"code"];
   symbol    = [coder decodeObjectForKey:@"symbol"];
+  minorUnit = [coder decodeObjectForKey:@"minorUnit"];
   formatter = [coder decodeObjectForKey:@"formatter"];
   
   return self;

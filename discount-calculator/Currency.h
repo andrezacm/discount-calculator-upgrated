@@ -26,6 +26,7 @@
   @property(nonatomic, readonly)NSString * currency;
   @property(nonatomic, readonly)NSString * code;
   @property(nonatomic, readonly)NSString * symbol;
+  @property(nonatomic, readonly)NSNumber * minorUnit;
   @property(nonatomic, readonly)NSNumberFormatter * formatter;
 
   +(Currency *)theDanishKroner;

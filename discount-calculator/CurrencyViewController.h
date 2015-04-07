@@ -10,7 +10,4 @@
 
 @interface CurrencyViewController : UIViewController
 
-//@property(strong, nonatomic) NSDecimalNumber * finalPrice;
-//@property(strong, nonatomic) NSDecimalNumber * originalPrice;
-
 @end

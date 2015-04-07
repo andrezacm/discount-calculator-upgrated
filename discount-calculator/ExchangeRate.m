@@ -18,6 +18,28 @@
   @synthesize expireAfterHours;
   @synthesize decimalHandler;
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+  [coder encodeObject:srcCurrency       forKey:@"srcCurrency"];
+  [coder encodeObject:dstCurrency       forKey:@"dstCurrency"];
+  [coder encodeObject:rate              forKey:@"rate"];
+  [coder encodeObject:lastFetchedOn     forKey:@"lastFetchedOn"];
+  [coder encodeObject:expireAfterHours  forKey:@"expireAfterHours"];
+  [coder encodeObject:decimalHandler    forKey:@"decimalHandler"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+  self = [self init];
+  
+  srcCurrency       = [coder decodeObjectForKey:@"srcCurrency"];
+  dstCurrency       = [coder decodeObjectForKey:@"dstCurrency"];
+  rate              = [coder decodeObjectForKey:@"rate"];
+  lastFetchedOn     = [coder decodeObjectForKey:@"lastFetchedOn"];
+  expireAfterHours  = [coder decodeObjectForKey:@"expireAfterHours"];
+  decimalHandler    = [coder decodeObjectForKey:@"decimalHandler"];
+  
+  return self;
+}
+
 -(ExchangeRate *)initWithSrcCurrency:(Currency *)aSrc destination:(Currency *)aDst {
   self = [super init];
   if (self) {

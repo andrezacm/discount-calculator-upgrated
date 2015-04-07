@@ -64,7 +64,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
   ForeignCurrencyViewController * foreignCurrencyController = [[ForeignCurrencyViewController alloc] init];
-  //trailsController.selectedRegion = [regions objectAtIndex:indexPath.row];
   NSMutableArray * temp = [NSMutableArray arrayWithArray:self.tableData];
   [temp removeObject:[self.tableData objectAtIndex:indexPath.row]];
   foreignCurrencyController.tableData = temp;

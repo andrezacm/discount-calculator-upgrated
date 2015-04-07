@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ForeignCurrencyViewController.h"
+#import "ExchangeViewController.h"
 
 @implementation ForeignCurrencyViewController
 
@@ -62,6 +63,19 @@
   cell.textLabel.text = [[self.tableData objectAtIndex:indexPath.row] currency];
   
   return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  [tableView deselectRowAtIndexPath:indexPath animated:NO];
+  
+  ExchangeViewController * exchangeController = [[ExchangeViewController alloc] init];
+  foreignCurrency = [self.tableData objectAtIndex:indexPath.row];
+  
+  exchangeController.homeCurrency = homeCurrency;
+  exchangeController.foreignCurrency = foreignCurrency;
+  
+  [[self navigationController] pushViewController:exchangeController animated:YES];
 }
 
 @end

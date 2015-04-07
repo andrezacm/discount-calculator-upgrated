@@ -269,59 +269,5 @@
             </objects>
             <point key="canvasLocation" x="160.5" y="866"/>
         </scene>
-        <!--Exchange View Controller-->
-        <scene sceneID="8QO-Jx-dJu">
-            <objects>
-                <viewController id="xwf-hb-CM7" customClass="ExchangeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Mg3-gA-QE4"/>
-                        <viewControllerLayoutGuide type="bottom" id="ltp-Qf-fA5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lI3-cj-NeK">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvd-NN-wzK">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="28" width="42" height="21"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bV5-vF-M3l">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="77" width="42" height="21"/>
-                                </variation>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="mvd-NN-wzK"/>
-                                <exclude reference="bV5-vF-M3l"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="mvd-NN-wzK"/>
-                                <include reference="bV5-vF-M3l"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="foreignCurrencyValue" destination="bV5-vF-M3l" id="kSs-rH-EMp"/>
-                        <outlet property="homeCurrency" destination="mvd-NN-wzK" id="AF9-ps-CbV"/>
-                        <outlet property="homeCurrencyValue" destination="mvd-NN-wzK" id="LBV-Dn-lgJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hNq-kB-Lg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1003.5" y="874"/>
-        </scene>
     </scenes>
 </document>

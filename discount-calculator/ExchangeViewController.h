@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Currency.h"
 
 @interface ExchangeViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *homeCurrencyValue;
-@property (weak, nonatomic) IBOutlet UILabel *foreignCurrencyValue;
+@property (strong, nonatomic) IBOutlet UILabel * homeCurrencyValue;
+@property (strong, nonatomic) IBOutlet UILabel * foreignCurrencyValue;
+
+@property (nonatomic, strong) Currency * homeCurrency;
+@property (nonatomic, strong) Currency * foreignCurrency;
+
+
 
 @end

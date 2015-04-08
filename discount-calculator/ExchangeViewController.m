@@ -40,6 +40,9 @@
   
   [exchange update];
   
+  NSDecimalNumber * a = [[NSDecimalNumber alloc] initWithString:@"1"];
+  NSString * b = [foreignCurrency.formatter stringFromNumber:[a decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[exchange.rate floatValue]]]];
+  NSLog(@"OPA>>%@", b);
 }
 
 - (void)didReceiveMemoryWarning {

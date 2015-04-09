@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "ForeignCurrencyViewController.h"
 #import "ExchangeViewController.h"
+#import "CalculatorViewController.h"
+#import "ExchangeRate.h"
 
 @implementation ForeignCurrencyViewController
 
@@ -64,16 +66,30 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
   
-  ExchangeViewController * exchangeController = [[ExchangeViewController alloc] init];
   foreignCurrency = [self.tableData objectAtIndex:indexPath.row];
   
-  exchangeController.homeCurrency = homeCurrency;
-  exchangeController.foreignCurrency = foreignCurrency;
+  ExchangeRate * exchange = [[ExchangeRate alloc] initWithSrcCurrency:homeCurrency destination:foreignCurrency];
   
-  [[self navigationController] pushViewController:exchangeController animated:YES];
+  [exchange update];
+
+  NSString * originalHome = [[homeCurrency.formatter stringFromNumber:_originalPrice] stringByAppendingString:@"  "];
+  NSString * discountHome = [[homeCurrency.formatter stringFromNumber:_discountPrice]stringByAppendingString:@"  "];
+  NSString * finalHome    = [[homeCurrency.formatter stringFromNumber:_finalPrice]stringByAppendingString:@"  "];
+
+  NSString * originalForeign = [foreignCurrency.formatter stringFromNumber:[_originalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[exchange.rate floatValue]]]];
+  NSString * discountForeign = [foreignCurrency.formatter stringFromNumber:[_discountPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[exchange.rate floatValue]]]];
+  NSString * finalForeign    = [foreignCurrency.formatter stringFromNumber:[_finalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[exchange.rate floatValue]]]];
+  
+  NSArray * views = [[self navigationController] viewControllers];
+  CalculatorViewController * calcVC = views[0];
+  
+  calcVC.originalPrice.text = [originalHome stringByAppendingString:originalForeign];
+  calcVC.discountPrice.text = [discountHome stringByAppendingString:discountForeign];
+  calcVC.finalPrice.text    = [finalHome stringByAppendingString:finalForeign];
+  
+  [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 @end

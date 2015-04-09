@@ -25,13 +25,13 @@
   self.view = contentView;
   
   self.homeCurrencyValue = [[UILabel alloc]initWithFrame:CGRectMake(20, 100, 200, 83)];
-  self.homeCurrencyValue.text = homeCurrency.entity;
+  self.homeCurrencyValue.text = homeCurrency.currency;
   [self.homeCurrencyValue sizeToFit];
   self.homeCurrencyValue.backgroundColor = [UIColor greenColor];
   [self.view addSubview:self.homeCurrencyValue];
   
   self.foreignCurrencyValue = [[UILabel alloc]initWithFrame:CGRectMake(20, 150, 200, 83)];
-  self.foreignCurrencyValue.text = foreignCurrency.entity;
+  self.foreignCurrencyValue.text = foreignCurrency.currency;
   [self.foreignCurrencyValue sizeToFit];
   self.foreignCurrencyValue.backgroundColor = [UIColor redColor];
   [self.view addSubview:self.foreignCurrencyValue];

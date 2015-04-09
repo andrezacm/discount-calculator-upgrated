@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CalculatorViewController.h"
 #import "BarGraphViewController.h"
+#import "HomeCurrencyViewController.h"
 
 @implementation CalculatorViewController
 
@@ -168,6 +169,11 @@
     BarGraphViewController * barGVC = (BarGraphViewController *)segue.destinationViewController;
     barGVC.finalPrice = calculator.finalPrice;
     barGVC.originalPrice = calculator.originalPrice;
+  } else {
+    HomeCurrencyViewController * homeCVC = (HomeCurrencyViewController *)segue.destinationViewController;
+    homeCVC.originalPrice = calculator.originalPrice;
+    homeCVC.finalPrice    = calculator.finalPrice;
+    homeCVC.discountPrice = calculator.discountPrice;
   }
 }
 

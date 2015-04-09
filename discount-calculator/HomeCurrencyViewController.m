@@ -63,11 +63,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
+  
   ForeignCurrencyViewController * foreignCurrencyController = [[ForeignCurrencyViewController alloc] init];
   NSMutableArray * temp = [NSMutableArray arrayWithArray:self.tableData];
   [temp removeObject:[self.tableData objectAtIndex:indexPath.row]];
-  foreignCurrencyController.tableData = temp;
-  foreignCurrencyController.homeCurrency = [self.tableData objectAtIndex:indexPath.row];
+  foreignCurrencyController.tableData     = temp;
+  foreignCurrencyController.originalPrice = _originalPrice;
+  foreignCurrencyController.finalPrice    = _finalPrice;
+  foreignCurrencyController.discountPrice = _discountPrice;
+  foreignCurrencyController.homeCurrency  = [self.tableData objectAtIndex:indexPath.row];
   [[self navigationController] pushViewController:foreignCurrencyController animated:YES];
 }
 

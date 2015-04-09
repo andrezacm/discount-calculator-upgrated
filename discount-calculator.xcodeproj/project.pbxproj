@@ -22,7 +22,6 @@
 		576A26E31AD454A000A1BA56 /* ExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A26E21AD454A000A1BA56 /* ExchangeViewController.m */; };
 		576A2E871AA18CE900B36F71 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A2E861AA18CE900B36F71 /* Calculator.m */; };
 		576A2E8B1AA2D81900B36F71 /* BarGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A2E8A1AA2D81900B36F71 /* BarGraphView.m */; };
-		5789F62F1AD2269E00C4FD72 /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5789F62E1AD2269E00C4FD72 /* CurrencyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +64,6 @@
 		576A2E861AA18CE900B36F71 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		576A2E891AA2D7CF00B36F71 /* BarGraphView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarGraphView.h; sourceTree = "<group>"; };
 		576A2E8A1AA2D81900B36F71 /* BarGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarGraphView.m; sourceTree = "<group>"; };
-		5789F62D1AD2267600C4FD72 /* CurrencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyViewController.h; sourceTree = "<group>"; };
-		5789F62E1AD2269E00C4FD72 /* CurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +123,6 @@
 				576A2E861AA18CE900B36F71 /* Calculator.m */,
 				576A2E891AA2D7CF00B36F71 /* BarGraphView.h */,
 				576A2E8A1AA2D81900B36F71 /* BarGraphView.m */,
-				5789F62D1AD2267600C4FD72 /* CurrencyViewController.h */,
-				5789F62E1AD2269E00C4FD72 /* CurrencyViewController.m */,
 				576A26D51AD2427800A1BA56 /* HomeCurrencyViewController.h */,
 				576A26D61AD2429500A1BA56 /* HomeCurrencyViewController.m */,
 				576A26D81AD2754000A1BA56 /* ForeignCurrencyViewController.h */,
@@ -271,7 +266,6 @@
 				576A26D71AD2429500A1BA56 /* HomeCurrencyViewController.m in Sources */,
 				5732C4961AA130FB00E51F95 /* AppDelegate.m in Sources */,
 				576A26DF1AD27D1700A1BA56 /* Currency.m in Sources */,
-				5789F62F1AD2269E00C4FD72 /* CurrencyViewController.m in Sources */,
 				5732C4931AA130FB00E51F95 /* main.m in Sources */,
 				576A26DA1AD2755300A1BA56 /* ForeignCurrencyViewController.m in Sources */,
 				576A2E871AA18CE900B36F71 /* Calculator.m in Sources */,

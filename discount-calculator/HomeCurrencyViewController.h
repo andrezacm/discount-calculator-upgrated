@@ -12,4 +12,8 @@
 
 @property (nonatomic, strong) NSMutableArray * tableData;
 
+@property(strong, nonatomic) NSDecimalNumber * originalPrice;
+@property(strong, nonatomic) NSDecimalNumber * finalPrice;
+@property(strong, nonatomic) NSDecimalNumber * discountPrice;
+
 @end

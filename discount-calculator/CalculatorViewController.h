@@ -16,8 +16,11 @@
 @property(weak, nonatomic) IBOutlet UITextField * discount;
 @property(weak, nonatomic) IBOutlet UITextField * discountAdd;
 @property(weak, nonatomic) IBOutlet UITextField * tax;
+@property(weak, nonatomic) IBOutlet UILabel     * originalPriceText;
 @property(weak, nonatomic) IBOutlet UILabel     * originalPrice;
+@property(weak, nonatomic) IBOutlet UILabel     * discountPriceText;
 @property(weak, nonatomic) IBOutlet UILabel     * discountPrice;
+@property(weak, nonatomic) IBOutlet UILabel     * finalPriceText;
 @property(weak, nonatomic) IBOutlet UILabel     * finalPrice;
 @property(weak, nonatomic) IBOutlet UIButton    * calculateButtom;
 

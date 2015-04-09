@@ -163,6 +163,33 @@
                                     <rect key="frame" x="16" y="431" width="368" height="21"/>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mp6-us-5JA">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="460" width="368" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE4-LY-ITZ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="489" width="368" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuz-ow-Ndd">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="518" width="368" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -181,6 +208,9 @@
                                 <exclude reference="mZV-QS-FNA"/>
                                 <exclude reference="aws-o1-5cf"/>
                                 <exclude reference="qZE-bS-Md6"/>
+                                <exclude reference="mp6-us-5JA"/>
+                                <exclude reference="CE4-LY-ITZ"/>
+                                <exclude reference="nuz-ow-Ndd"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -199,6 +229,9 @@
                                 <include reference="mZV-QS-FNA"/>
                                 <include reference="aws-o1-5cf"/>
                                 <include reference="qZE-bS-Md6"/>
+                                <include reference="mp6-us-5JA"/>
+                                <include reference="CE4-LY-ITZ"/>
+                                <include reference="nuz-ow-Ndd"/>
                             </mask>
                         </variation>
                         <connections>
@@ -211,10 +244,13 @@
                         <outlet property="calculateButtom" destination="r87-Pc-pxn" id="8h3-2c-DRN"/>
                         <outlet property="discount" destination="e13-Iq-1wn" id="wXI-dc-QfT"/>
                         <outlet property="discountAdd" destination="fR9-6U-12x" id="QAw-rt-MbO"/>
-                        <outlet property="discountPrice" destination="aws-o1-5cf" id="q2l-0v-peq"/>
+                        <outlet property="discountPrice" destination="mp6-us-5JA" id="z70-m3-muR"/>
+                        <outlet property="discountPriceText" destination="qZE-bS-Md6" id="2cv-dS-bTZ"/>
                         <outlet property="dollarsOff" destination="1dX-to-bYC" id="L18-sh-cYl"/>
-                        <outlet property="finalPrice" destination="qZE-bS-Md6" id="oxE-YU-Qan"/>
-                        <outlet property="originalPrice" destination="mZV-QS-FNA" id="c2Q-sS-0fQ"/>
+                        <outlet property="finalPrice" destination="nuz-ow-Ndd" id="JCx-t7-ugc"/>
+                        <outlet property="finalPriceText" destination="CE4-LY-ITZ" id="tyR-YE-6GS"/>
+                        <outlet property="originalPrice" destination="aws-o1-5cf" id="bSd-Vx-dc5"/>
+                        <outlet property="originalPriceText" destination="mZV-QS-FNA" id="9JZ-D0-Ze2"/>
                         <outlet property="price" destination="tPv-08-dV7" id="CgL-oG-zyv"/>
                         <outlet property="tax" destination="6ds-Ct-UfK" id="ssc-WC-dPZ"/>
                     </connections>

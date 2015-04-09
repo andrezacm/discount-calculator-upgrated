@@ -191,9 +191,12 @@
   [numberFormatter setMinimumFractionDigits:2];
   [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
   
-  _originalPrice.text = [@"Original Price: " stringByAppendingString:[numberFormatter stringFromNumber:calculator.originalPrice]];
-  _discountPrice.text = [@"Discount Price: " stringByAppendingString:[numberFormatter stringFromNumber:calculator.discountPrice]];
-  _finalPrice.text = [@"Final Price (with tax): " stringByAppendingString:[numberFormatter stringFromNumber:calculator.finalPrice]];
+  _originalPriceText.text = @"Original Price: ";
+  _originalPrice.text     = [numberFormatter stringFromNumber:calculator.originalPrice];
+  _discountPriceText.text = @"Discount Price: ";
+  _discountPrice.text     = [numberFormatter stringFromNumber:calculator.discountPrice];
+  _finalPriceText.text    = @"Final Price (with tax): ";
+  _finalPrice.text        = [numberFormatter stringFromNumber:calculator.finalPrice];
 }
 
 - (NSDecimalNumber *)formatTextForModel:(UITextField *)textField {

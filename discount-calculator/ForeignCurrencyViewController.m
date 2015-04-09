@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "ForeignCurrencyViewController.h"
-#import "ExchangeViewController.h"
 #import "CalculatorViewController.h"
 #import "ExchangeRate.h"
 

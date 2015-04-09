@@ -80,8 +80,8 @@
   [self drawString:sSaved withRect:savedRect isSaved:YES];
 }
 
--(void)drawString:(NSString *)s withRect:(CGRect)rect isSaved:(BOOL)saved {
-  if (saved && [savedPercent floatValue] < 0.35) {
+-(void)drawString:(NSString *)s withRect:(CGRect)rect isSaved:(BOOL)isSaved {
+  if (isSaved && [savedPercent floatValue] < 0.35) {
     NSDictionary * textAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Arial" size:12]};
     [s drawInRect:rect withAttributes:textAttributes];
   } else {

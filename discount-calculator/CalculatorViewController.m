@@ -177,6 +177,11 @@
   }
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+  if (calculator.finalPrice == nil) return NO;
+  else return YES;
+}
+
 - (IBAction)calculateDiscount:(id)sender {
   //Dismiss keyboard
   [[self view] endEditing:YES];

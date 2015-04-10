@@ -59,47 +59,10 @@
 }
 
 -(BOOL)update {
-  if ([self.lastFetchedOn timeIntervalSinceNow] > (self.expireAfterHours.doubleValue * -3600.0)) {
+  if ([self.lastFetchedOn timeIntervalSinceNow] > (self.expireAfterHours.doubleValue * -3600.0))
     return NO;
-  }
-  
-  //alphacode = 3 letter code in currency
-  //NSString * yqlString = [NSString stringWithFormat:@"Select * from yahoo.finance.xchange where pair in (\"%@%@\")", self.srcCurrency.alphacode, self.dstCurrency.alphacode];
-  
-  /*http://query.yahooapis.com/v1/public/yql?q=select%20%2a%20from%20yahoo.finance.xchange%20where%20pair%20in%20%28%22USDEUR%22%29&env=store://datatables.org/alltableswithkeys
-  */
-  
-  NSString * yqlString = [NSString stringWithFormat:@"select * from yahoo.finance.xchange where pair in (\"%@%@\")&env=store://datatables.org/alltableswithkeys&format=json", self.srcCurrency.code, self.dstCurrency.code];
-  
-  //NSString * urlString = [NSString stringWithFormat:@"http://.../yql?q=%@...", [yqlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
-  
-  NSString * urlString = [NSString stringWithFormat:@"http://query.yahooapis.com/v1/public/yql?q=%@", [yqlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
-  
-  
-  NSURL * yahooRESTQueryURL = [NSURL URLWithString:urlString];
-  
-  NSURLRequest * request = [NSURLRequest requestWithURL:yahooRESTQueryURL];
-  NSHTTPURLResponse * response = nil;
-  NSError * error = nil;
-  
-  NSData * queryResults = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-  
-  if (response.statusCode == 200) {
-    id unknownObject = [NSJSONSerialization JSONObjectWithData:queryResults options:0 error:&error];
-    if (!error) {
-      if ([unknownObject isKindOfClass:[NSDictionary class]]) {
-        NSDictionary * exchangeRateDict = unknownObject;
-        NSDictionary * results = [[[exchangeRateDict valueForKey:@"query"] valueForKey:@"results"] valueForKey:@"rate"];
-        self.rate = @([[results objectForKey:@"Rate"] floatValue]);
-        self.lastFetchedOn = [NSDate date];
-      } else {
-        return NO;
-      }
-    } else {
-      return NO;
-    }
-  }
-  return YES;
+  else
+    return YES;
 }
 
 @end

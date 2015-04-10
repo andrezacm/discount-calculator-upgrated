@@ -39,9 +39,9 @@
   
   self.view = tableView;
   
-  self.progressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
-  self.progressView.hidden = YES;
-  [self.view addSubview:self.progressView];
+  _progressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
+  _progressView.hidden = YES;
+  [self.view addSubview:_progressView];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -56,7 +56,7 @@
 #pragma mark UITableViewDelegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.tableData count];
+  return [tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,17 +67,17 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
   }
   
-  cell.textLabel.text = [[self.tableData objectAtIndex:indexPath.row] currency];
+  cell.textLabel.text = [[tableData objectAtIndex:indexPath.row] currency];
   return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
-  foreignCurrency = [self.tableData objectAtIndex:indexPath.row];
-  self.exchange   = [[ExchangeRate alloc] initWithSrcCurrency:homeCurrency destination:foreignCurrency];
+  foreignCurrency = [tableData objectAtIndex:indexPath.row];
+  _exchange   = [[ExchangeRate alloc] initWithSrcCurrency:homeCurrency destination:foreignCurrency];
   
   // create the request and connection
-  NSString * yqlString = [NSString stringWithFormat:@"select * from yahoo.finance.xchange where pair in (\"%@%@\")&env=store://datatables.org/alltableswithkeys&format=json", homeCurrency.code, self.foreignCurrency.code];
+  NSString * yqlString = [NSString stringWithFormat:@"select * from yahoo.finance.xchange where pair in (\"%@%@\")&env=store://datatables.org/alltableswithkeys&format=json", homeCurrency.code, foreignCurrency.code];
   
   NSString * urlString = [NSString stringWithFormat:@"http://query.yahooapis.com/v1/public/yql?q=%@", [yqlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
   
@@ -86,11 +86,11 @@
   
 //  NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/2/2d/Snake_River_%285mb%29.jpg"]];
   
-  self.connection = [NSURLConnection connectionWithRequest:request delegate:self];
+  _connection = [NSURLConnection connectionWithRequest:request delegate:self];
   
-  if (self.connection) {
-    self.buffer = [NSMutableData data];
-    [self.connection start];
+  if (_connection) {
+    _buffer = [NSMutableData data];
+    [_connection start];
   }
   else {
     //self.textField.text = @"Connection Failed";
@@ -101,19 +101,19 @@
 #pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-  [self.buffer setLength:0];
-  self.urlResponse = response;
+  [_buffer setLength:0];
+  _urlResponse = response;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-  [self.buffer appendData:data];
-  self.progressView.progress = ((100.0/self.urlResponse.expectedContentLength)*self.buffer.length)/100;
-  if (self.progressView.progress == 1) {
-    self.progressView.hidden = YES;
+  [_buffer appendData:data];
+  _progressView.progress = ((100.0/_urlResponse.expectedContentLength)*_buffer.length)/100;
+  if (_progressView.progress == 1) {
+    _progressView.hidden = YES;
   } else {
-    self.progressView.hidden = NO;
+    _progressView.hidden = NO;
   }
-  NSLog(@"%.0f%%", ((100.0/self.urlResponse.expectedContentLength)*self.buffer.length));
+  NSLog(@"%.0f%%", ((100.0/_urlResponse.expectedContentLength)*_buffer.length));
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection
@@ -160,15 +160,15 @@
         NSLog(@"ERROR: %@", [error localizedDescription]);
       }
       // clear the connection
-      self.connection = nil;
-      self.buffer     = nil;
+      _connection = nil;
+      _buffer     = nil;
     });
   });
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-  self.connection = nil;
-  self.buffer     = nil;
+  _connection = nil;
+  _buffer     = nil;
   
   //self.textField.text = [error localizedDescription];
   NSLog(@"Connection failed! Error - %@ %@",

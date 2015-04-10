@@ -74,6 +74,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
   foreignCurrency = [self.tableData objectAtIndex:indexPath.row];
+  self.exchange   = [[ExchangeRate alloc] initWithSrcCurrency:homeCurrency destination:foreignCurrency];
   
   // create the request and connection
   NSString * yqlString = [NSString stringWithFormat:@"select * from yahoo.finance.xchange where pair in (\"%@%@\")&env=store://datatables.org/alltableswithkeys&format=json", homeCurrency.code, self.foreignCurrency.code];
@@ -122,9 +123,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   // Parsing
-  
-  ExchangeRate * exchange = [[ExchangeRate alloc] initWithSrcCurrency:homeCurrency destination:foreignCurrency];
-  
   // dispatch off the main queue for json processing
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
@@ -136,16 +134,16 @@
         if ([unknownObject isKindOfClass:[NSDictionary class]]) {
           NSDictionary * exchangeRateDict = unknownObject;
           NSDictionary * results = [[[exchangeRateDict valueForKey:@"query"] valueForKey:@"results"] valueForKey:@"rate"];
-          exchange.rate = @([[results objectForKey:@"Rate"] floatValue]);
-          exchange.lastFetchedOn = [NSDate date];
+          _exchange.rate = @([[results objectForKey:@"Rate"] floatValue]);
+          _exchange.lastFetchedOn = [NSDate date];
           
           NSString * originalHome = [[homeCurrency.formatter stringFromNumber:_originalPrice] stringByAppendingString:@"  "];
           NSString * discountHome = [[homeCurrency.formatter stringFromNumber:_discountPrice]stringByAppendingString:@"  "];
           NSString * finalHome    = [[homeCurrency.formatter stringFromNumber:_finalPrice]stringByAppendingString:@"  "];
           
-          NSString * originalForeign = [foreignCurrency.formatter stringFromNumber:[_originalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[exchange.rate floatValue]]]];
-          NSString * discountForeign = [foreignCurrency.formatter stringFromNumber:[_discountPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[exchange.rate floatValue]]]];
-          NSString * finalForeign    = [foreignCurrency.formatter stringFromNumber:[_finalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[exchange.rate floatValue]]]];
+          NSString * originalForeign = [foreignCurrency.formatter stringFromNumber:[_originalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]]];
+          NSString * discountForeign = [foreignCurrency.formatter stringFromNumber:[_discountPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]]];
+          NSString * finalForeign    = [foreignCurrency.formatter stringFromNumber:[_finalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]]];
           
           NSArray * views = [[self navigationController] viewControllers];
           CalculatorViewController * calcVC = views[0];

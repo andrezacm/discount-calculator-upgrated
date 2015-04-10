@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) Currency * homeCurrency;
 @property (nonatomic, strong) Currency * foreignCurrency;
+@property (nonatomic, strong) ExchangeRate * exchange;
 
 @property(strong, nonatomic) NSDecimalNumber * originalPrice;
 @property(strong, nonatomic) NSDecimalNumber * finalPrice;

@@ -7,16 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Currency.h"
+#import "ExchangeRate.h"
 
-@interface ForeignCurrencyViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ForeignCurrencyViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,NSURLConnectionDelegate>
 
 @property (nonatomic, strong) NSMutableArray * tableData;
+
 @property (nonatomic, strong) Currency * homeCurrency;
 @property (nonatomic, strong) Currency * foreignCurrency;
 
 @property(strong, nonatomic) NSDecimalNumber * originalPrice;
 @property(strong, nonatomic) NSDecimalNumber * finalPrice;
 @property(strong, nonatomic) NSDecimalNumber * discountPrice;
+
+@property (nonatomic, strong) NSMutableData   * buffer;
+@property (nonatomic, strong) NSURLConnection * connection;
+@property (nonatomic, strong) NSURLResponse   * urlResponse;
+
+@property (strong, nonatomic) IBOutlet UIProgressView * progressView;
 
 @end

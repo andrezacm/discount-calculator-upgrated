@@ -16,7 +16,8 @@ enum {
   india,
   pound,
   china,
-  euro
+  euro,
+  japan
 };
 
 Currency * _secretCurrencies[11];
@@ -80,12 +81,20 @@ Currency * _secretCurrencies[11];
   return _secretCurrencies[china];
 }
 
-//EUROPE	Euro	EUR	978	2
+// EUROPE	Euro	EUR	978	2
 +(Currency *)theEuropeanEuro {
   if (_secretCurrencies[euro] == nil) {
     _secretCurrencies[euro] = [[Currency alloc] initWithEntity:@"EUROPE" currency:@"Euro" code:@"EUR" decimalPlaces:2 symbol:@"€"];
   }
   return _secretCurrencies[euro];
+}
+
+// JAPAN	Yen	JPY	392	0
++(Currency *)theJapaneseYen {
+  if (_secretCurrencies[japan] == nil) {
+    _secretCurrencies[japan] = [[Currency alloc] initWithEntity:@"JAPAN" currency:@"Yen" code:@"JPY" decimalPlaces:0 symbol:@"¥"];
+  }
+  return _secretCurrencies[japan];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {

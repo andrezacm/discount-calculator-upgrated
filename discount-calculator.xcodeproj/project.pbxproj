@@ -21,6 +21,8 @@
 		576A26E01AD27D1700A1BA56 /* ExchangeRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A26DE1AD27D1700A1BA56 /* ExchangeRate.m */; };
 		576A2E871AA18CE900B36F71 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A2E861AA18CE900B36F71 /* Calculator.m */; };
 		576A2E8B1AA2D81900B36F71 /* BarGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A2E8A1AA2D81900B36F71 /* BarGraphView.m */; };
+		578309E81AD8A48700FD3BEF /* DiscountCalculatorDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = 578309E71AD8A48700FD3BEF /* DiscountCalculatorDoc.m */; };
+		57D7759F1AD90BAD00F008CA /* DiscountCalculatorDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7759E1AD90BAD00F008CA /* DiscountCalculatorDatabase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,10 @@
 		576A2E861AA18CE900B36F71 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		576A2E891AA2D7CF00B36F71 /* BarGraphView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarGraphView.h; sourceTree = "<group>"; };
 		576A2E8A1AA2D81900B36F71 /* BarGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarGraphView.m; sourceTree = "<group>"; };
+		578309E61AD8A31F00FD3BEF /* DiscountCalculatorDoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscountCalculatorDoc.h; sourceTree = "<group>"; };
+		578309E71AD8A48700FD3BEF /* DiscountCalculatorDoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCalculatorDoc.m; sourceTree = "<group>"; };
+		57D7759D1AD90B9300F008CA /* DiscountCalculatorDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscountCalculatorDatabase.h; sourceTree = "<group>"; };
+		57D7759E1AD90BAD00F008CA /* DiscountCalculatorDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCalculatorDatabase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,10 @@
 				576A26D61AD2429500A1BA56 /* HomeCurrencyViewController.m */,
 				576A26D81AD2754000A1BA56 /* ForeignCurrencyViewController.h */,
 				576A26D91AD2755300A1BA56 /* ForeignCurrencyViewController.m */,
+				578309E61AD8A31F00FD3BEF /* DiscountCalculatorDoc.h */,
+				578309E71AD8A48700FD3BEF /* DiscountCalculatorDoc.m */,
+				57D7759D1AD90B9300F008CA /* DiscountCalculatorDatabase.h */,
+				57D7759E1AD90BAD00F008CA /* DiscountCalculatorDatabase.m */,
 			);
 			path = "discount-calculator";
 			sourceTree = "<group>";
@@ -254,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578309E81AD8A48700FD3BEF /* DiscountCalculatorDoc.m in Sources */,
 				576A26E01AD27D1700A1BA56 /* ExchangeRate.m in Sources */,
 				5732C4BB1AA132C600E51F95 /* BarGraphViewController.m in Sources */,
 				5732C4B71AA1318700E51F95 /* CalculatorViewController.m in Sources */,
@@ -264,6 +275,7 @@
 				576A26DA1AD2755300A1BA56 /* ForeignCurrencyViewController.m in Sources */,
 				576A2E871AA18CE900B36F71 /* Calculator.m in Sources */,
 				576A2E8B1AA2D81900B36F71 /* BarGraphView.m in Sources */,
+				57D7759F1AD90BAD00F008CA /* DiscountCalculatorDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

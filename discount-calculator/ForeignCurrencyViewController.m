@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "ForeignCurrencyViewController.h"
 #import "CalculatorViewController.h"
+#import "DiscountCalculatorDoc.h"
+#import "DiscountCalculatorDatabase.h"
 
 @implementation ForeignCurrencyViewController
 
@@ -42,6 +44,12 @@
   _progressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
   _progressView.hidden = YES;
   [self.view addSubview:_progressView];
+  
+  _testdata = [DiscountCalculatorDatabase loadDocs];
+  DiscountCalculatorDoc * d = [_testdata firstObject];
+  ExchangeRate * dic = [d data];
+  NSLog(@"OPA >%@", [dic description]);
+  
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -75,7 +83,6 @@
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
   foreignCurrency = [tableData objectAtIndex:indexPath.row];
   _exchange   = [[ExchangeRate alloc] initWithSrcCurrency:homeCurrency destination:foreignCurrency];
-  
   // create the request and connection
   NSString * yqlString = [NSString stringWithFormat:@"select * from yahoo.finance.xchange where pair in (\"%@%@\")&env=store://datatables.org/alltableswithkeys&format=json", homeCurrency.code, foreignCurrency.code];
   
@@ -126,7 +133,7 @@
   // dispatch off the main queue for json processing
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
-    NSError *error = nil;
+    NSError * error = nil;
     id unknownObject = [NSJSONSerialization JSONObjectWithData:_buffer options:0 error:&error];
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -136,6 +143,8 @@
           NSDictionary * results = [[[exchangeRateDict valueForKey:@"query"] valueForKey:@"results"] valueForKey:@"rate"];
           _exchange.rate = @([[results objectForKey:@"Rate"] floatValue]);
           _exchange.lastFetchedOn = [NSDate date];
+          
+          [_exchange save];
           
           NSString * originalHome = [[homeCurrency.formatter stringFromNumber:_originalPrice] stringByAppendingString:@"  "];
           NSString * discountHome = [[homeCurrency.formatter stringFromNumber:_discountPrice]stringByAppendingString:@"  "];

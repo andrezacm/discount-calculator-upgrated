@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "ExchangeRate.h"
+#import "DiscountCalculatorDatabase.h"
+#import "DiscountCalculatorDoc.h"
 
 @implementation ExchangeRate
 
@@ -63,6 +65,25 @@
     return NO;
   else
     return YES;
+}
+
+-(void)load {
+  NSMutableData * data = [DiscountCalculatorDatabase loadDocs];
+  
+}
+
+-(void)save {
+  DiscountCalculatorDoc * doc = [[DiscountCalculatorDoc alloc] init];
+  
+  NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+  [dic setValue:[srcCurrency code] forKey:@"srcCurrency"];
+  [dic setValue:[dstCurrency code] forKey:@"dstCurrency"];
+  [dic setValue:rate forKey:@"rate"];
+  [dic setValue:lastFetchedOn forKey:@"lastFetchedOn"];
+  [dic setValue:expireAfterHours forKey:@"expireAfterHours"];
+  
+  doc.data = self;
+  [doc saveData];
 }
 
 @end

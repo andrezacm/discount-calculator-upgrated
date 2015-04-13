@@ -27,4 +27,6 @@
 
 @property (strong, nonatomic) IBOutlet UIProgressView * progressView;
 
+@property (nonatomic, strong) NSMutableArray * testdata;
+
 @end

@@ -19,6 +19,5 @@
 
 -(ExchangeRate *)initWithSrcCurrency:(Currency *)aSrc destination:(Currency *)aDst;
 -(BOOL)update;
--(void)save;
 
 @end

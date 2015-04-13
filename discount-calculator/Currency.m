@@ -19,7 +19,8 @@ enum {
   euro,
   japan,
   us,
-  canada
+  canada,
+  mexico
 };
 
 Currency * _secretCurrencies[11];
@@ -113,6 +114,14 @@ Currency * _secretCurrencies[11];
     _secretCurrencies[canada] = [[Currency alloc] initWithEntity:@"CANADA" currency:@"Canadian Dollar" code:@"CAD" decimalPlaces:2 symbol:@"$"];
   }
   return _secretCurrencies[canada];
+}
+
+// MEXICO	Mexican Peso	MXN	484	2
++(Currency *)theMexicanPeso {
+  if (_secretCurrencies[mexico] == nil) {
+    _secretCurrencies[mexico] = [[Currency alloc] initWithEntity:@"MEXICO" currency:@"Mexican Peso" code:@"MXN" decimalPlaces:2 symbol:@"$"];
+  }
+  return _secretCurrencies[mexico];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {

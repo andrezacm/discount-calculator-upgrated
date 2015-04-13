@@ -24,6 +24,11 @@
 @property(weak, nonatomic) IBOutlet UILabel     * finalPrice;
 @property(weak, nonatomic) IBOutlet UIButton    * calculateButtom;
 
+@property(strong, nonatomic) NSDecimalNumber   * originalPriceForeign;
+@property(strong, nonatomic) NSDecimalNumber   * finalPriceForeign;
+@property(strong, nonatomic) NSNumberFormatter * homeFormatter;
+@property(strong, nonatomic) NSNumberFormatter * foreignFormatter;
+
 @property(strong) Calculator * calculator;
 
 - (IBAction)calculateDiscount:(id)sender;

@@ -14,6 +14,10 @@
 
   @synthesize finalPrice;
   @synthesize originalPrice;
+  @synthesize homeFormatter;
+  @synthesize originalPriceForeign;
+  @synthesize finalPriceForeign;
+  @synthesize foreignFormatter;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -21,16 +25,28 @@
   ((BarGraphView *)self.view).discountPercent = [finalPrice decimalNumberByDividingBy:originalPrice];
   ((BarGraphView *)self.view).savedPercent = [[originalPrice decimalNumberBySubtracting:finalPrice] decimalNumberByDividingBy:originalPrice];
   
-  NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
-  [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-  [numberFormatter setCurrencySymbol:@"$"];
-  [numberFormatter setMaximumFractionDigits:2];
-  [numberFormatter setMinimumFractionDigits:2];
-  [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+  if (homeFormatter == nil) {
+    NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [numberFormatter setCurrencySymbol:@"$"];
+    [numberFormatter setMaximumFractionDigits:2];
+    [numberFormatter setMinimumFractionDigits:2];
+    [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+    
+    ((BarGraphView *)self.view).originalPrice = [numberFormatter stringFromNumber:originalPrice];
+    ((BarGraphView *)self.view).discount = [numberFormatter stringFromNumber:finalPrice];
+    ((BarGraphView *)self.view).saved = [numberFormatter stringFromNumber:[originalPrice decimalNumberBySubtracting:finalPrice]];
+  } else {
+    ((BarGraphView *)self.view).originalPrice = [homeFormatter stringFromNumber:originalPrice];
+    ((BarGraphView *)self.view).discount = [homeFormatter stringFromNumber:finalPrice];
+    ((BarGraphView *)self.view).saved = [homeFormatter stringFromNumber:[originalPrice decimalNumberBySubtracting:finalPrice]];
+  }
   
-  ((BarGraphView *)self.view).originalPrice = [numberFormatter stringFromNumber:originalPrice];
-  ((BarGraphView *)self.view).discount = [numberFormatter stringFromNumber:finalPrice];
-  ((BarGraphView *)self.view).saved = [numberFormatter stringFromNumber:[originalPrice decimalNumberBySubtracting:finalPrice]];
+  if (originalPriceForeign != nil || finalPriceForeign != nil) {
+    ((BarGraphView *)self.view).originalPrice = [[((BarGraphView *)self.view).originalPrice stringByAppendingString:@"\n"] stringByAppendingString:[foreignFormatter stringFromNumber:originalPriceForeign]];
+    ((BarGraphView *)self.view).discount = [[((BarGraphView *)self.view).discount stringByAppendingString:@"\n"] stringByAppendingString:[foreignFormatter stringFromNumber:finalPriceForeign]];
+    ((BarGraphView *)self.view).saved = [[((BarGraphView *)self.view).saved stringByAppendingString:@"\n"] stringByAppendingString:[foreignFormatter stringFromNumber:[originalPriceForeign decimalNumberBySubtracting:finalPriceForeign]]];
+  }
 }
 
 - (void)didReceiveMemoryWarning {

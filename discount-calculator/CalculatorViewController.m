@@ -14,6 +14,10 @@
 @implementation CalculatorViewController
 
   @synthesize calculator;
+  @synthesize originalPriceForeign;
+  @synthesize finalPriceForeign;
+  @synthesize homeFormatter;
+  @synthesize foreignFormatter;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -167,8 +171,12 @@
   
   if([segue.destinationViewController isKindOfClass:[BarGraphViewController class]]) {
     BarGraphViewController * barGVC = (BarGraphViewController *)segue.destinationViewController;
-    barGVC.finalPrice = calculator.finalPrice;
-    barGVC.originalPrice = calculator.originalPrice;
+    barGVC.finalPrice           = calculator.finalPrice;
+    barGVC.originalPrice        = calculator.originalPrice;
+    barGVC.homeFormatter        = homeFormatter;
+    barGVC.foreignFormatter     = foreignFormatter;
+    barGVC.originalPriceForeign = originalPriceForeign;
+    barGVC.finalPriceForeign    = finalPriceForeign;
   } else {
     HomeCurrencyViewController * homeCVC = (HomeCurrencyViewController *)segue.destinationViewController;
     homeCVC.originalPrice = calculator.originalPrice;

@@ -83,6 +83,11 @@
   calcVC.discountPrice.text = [discountHome stringByAppendingString:discountForeign];
   calcVC.finalPrice.text    = [finalHome stringByAppendingString:finalForeign];
   
+  calcVC.originalPriceForeign = [_originalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]];
+  calcVC.finalPriceForeign    = [_finalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]];
+  calcVC.homeFormatter        = homeCurrency.formatter;
+  calcVC.foreignFormatter     = foreignCurrency.formatter;
+  
   [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 

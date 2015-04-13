@@ -13,4 +13,10 @@
 @property(strong, nonatomic) NSDecimalNumber * finalPrice;
 @property(strong, nonatomic) NSDecimalNumber * originalPrice;
 
+@property(strong, nonatomic) NSDecimalNumber * originalPriceForeign;
+@property(strong, nonatomic) NSDecimalNumber * finalPriceForeign;
+
+@property(strong, nonatomic) NSNumberFormatter * homeFormatter;
+@property(strong, nonatomic) NSNumberFormatter * foreignFormatter;
+
 @end

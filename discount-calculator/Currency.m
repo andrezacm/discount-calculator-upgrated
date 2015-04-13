@@ -17,7 +17,8 @@ enum {
   pound,
   china,
   euro,
-  japan
+  japan,
+  us
 };
 
 Currency * _secretCurrencies[11];
@@ -95,6 +96,14 @@ Currency * _secretCurrencies[11];
     _secretCurrencies[japan] = [[Currency alloc] initWithEntity:@"JAPAN" currency:@"Yen" code:@"JPY" decimalPlaces:0 symbol:@"¥"];
   }
   return _secretCurrencies[japan];
+}
+
+// UNITED STATES	US Dollar	USD	840	2
++(Currency *)theUSDollar {
+  if (_secretCurrencies[us] == nil) {
+    _secretCurrencies[us] = [[Currency alloc] initWithEntity:@"UNITED STATES" currency:@"US Dollar" code:@"USD" decimalPlaces:2 symbol:@"$"];
+  }
+  return _secretCurrencies[us];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {

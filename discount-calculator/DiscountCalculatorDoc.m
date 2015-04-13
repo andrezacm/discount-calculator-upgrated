@@ -37,20 +37,6 @@
   }
   return success;
 }
-/*
--(id)data {
-  if (_data != nil) return _data;
-  
-  NSString * dataPath = [path stringByAppendingPathComponent:kDataFile];
-  NSData * codedData  = [[NSData alloc] initWithContentsOfFile:dataPath];
-  if (codedData == nil) return nil;
-  
-  NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
-  _data = [unarchiver decodeObjectForKey:kDataKey];
-  [unarchiver finishDecoding];
-  
-  return _data;
-}*/
 
 -(id)data {
   if (_data != nil) return _data;
@@ -76,14 +62,6 @@
   exchange.expireAfterHours = expireAfterHours;
   
   _data = exchange;
-  
-  //  _data = [unarchiver decodeObjectForKey:kDataKey];
-//  [unarchiver finishDecoding];
-
-
-//  NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
-//  NSString * mutableArray = [unarchiver decodeObjectForKey:@"a"];
-//  NSString * stringValue = [unarchiver decodeObjectForKey:@"b"];
   
   return _data;
 }

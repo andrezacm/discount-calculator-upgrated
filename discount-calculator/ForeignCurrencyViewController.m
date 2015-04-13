@@ -44,12 +44,6 @@
   _progressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
   _progressView.hidden = YES;
   [self.view addSubview:_progressView];
-  
-  _testdata = [DiscountCalculatorDatabase loadDocs];
-  DiscountCalculatorDoc * d = [_testdata firstObject];
-  ExchangeRate * dic = [d data];
-  NSLog(@"OPA >%@", [dic description]);
-  
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -59,6 +53,45 @@
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+-(ExchangeRate *)loadExchangeRate {
+  _testdata = [DiscountCalculatorDatabase loadDocs];
+  
+  for (DiscountCalculatorDoc * doc in _testdata) {
+    ExchangeRate * exRate = [doc data];
+    if ([exRate.srcCurrency isEqual:homeCurrency] && [exRate.dstCurrency isEqual:foreignCurrency]) {
+      return exRate;
+    }
+  }
+  return [[ExchangeRate alloc] initWithSrcCurrency:homeCurrency destination:foreignCurrency];
+}
+
+-(void)applyChanges {
+  NSString * originalHome = [[homeCurrency.formatter stringFromNumber:_originalPrice] stringByAppendingString:@"  "];
+  NSString * discountHome = [[homeCurrency.formatter stringFromNumber:_discountPrice]stringByAppendingString:@"  "];
+  NSString * finalHome    = [[homeCurrency.formatter stringFromNumber:_finalPrice]stringByAppendingString:@"  "];
+  
+  NSString * originalForeign = [foreignCurrency.formatter stringFromNumber:[_originalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]]];
+  NSString * discountForeign = [foreignCurrency.formatter stringFromNumber:[_discountPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]]];
+  NSString * finalForeign    = [foreignCurrency.formatter stringFromNumber:[_finalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]]];
+  
+  NSArray * views = [[self navigationController] viewControllers];
+  CalculatorViewController * calcVC = views[0];
+  
+  calcVC.originalPrice.text = [originalHome stringByAppendingString:originalForeign];
+  calcVC.discountPrice.text = [discountHome stringByAppendingString:discountForeign];
+  calcVC.finalPrice.text    = [finalHome stringByAppendingString:finalForeign];
+  
+  [[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
+#pragma mark UIAlertViewDelegate method
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  if (buttonIndex == 1) {
+    // do stuff
+  }
 }
 
 #pragma mark UITableViewDelegate methods
@@ -82,26 +115,30 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
   foreignCurrency = [tableData objectAtIndex:indexPath.row];
-  _exchange   = [[ExchangeRate alloc] initWithSrcCurrency:homeCurrency destination:foreignCurrency];
-  // create the request and connection
-  NSString * yqlString = [NSString stringWithFormat:@"select * from yahoo.finance.xchange where pair in (\"%@%@\")&env=store://datatables.org/alltableswithkeys&format=json", homeCurrency.code, foreignCurrency.code];
+  _exchange = [self loadExchangeRate];
   
-  NSString * urlString = [NSString stringWithFormat:@"http://query.yahooapis.com/v1/public/yql?q=%@", [yqlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+  if ([_exchange update]) {
+    // create the request and connection
+    NSString * yqlString = [NSString stringWithFormat:@"select * from yahoo.finance.xchange where pair in (\"%@%@\")&env=store://datatables.org/alltableswithkeys&format=json", homeCurrency.code, foreignCurrency.code];
   
-  NSURL * yahooRESTQueryURL = [NSURL URLWithString:urlString];
-  NSURLRequest * request    = [NSURLRequest requestWithURL:yahooRESTQueryURL];
+    NSString * urlString = [NSString stringWithFormat:@"http://query.yahooapis.com/v1/public/yql?q=%@", [yqlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
   
-//  NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/2/2d/Snake_River_%285mb%29.jpg"]];
+    NSURL * yahooRESTQueryURL = [NSURL URLWithString:urlString];
+    NSURLRequest * request    = [NSURLRequest requestWithURL:yahooRESTQueryURL];
   
-  _connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    //  NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/2/2d/Snake_River_%285mb%29.jpg"]];
   
-  if (_connection) {
-    _buffer = [NSMutableData data];
-    [_connection start];
-  }
-  else {
-    //self.textField.text = @"Connection Failed";
-    NSLog(@"Connection Failed");
+    _connection = [NSURLConnection connectionWithRequest:request delegate:self];
+  
+    if (_connection) {
+      _buffer = [NSMutableData data];
+      [_connection start];
+    } else {
+      //self.textField.text = @"Connection Failed";
+      NSLog(@"Connection Failed >>");
+    }
+  } else {
+    [self applyChanges];
   }
 }
 
@@ -129,7 +166,6 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-  // Parsing
   // dispatch off the main queue for json processing
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
@@ -144,24 +180,11 @@
           _exchange.rate = @([[results objectForKey:@"Rate"] floatValue]);
           _exchange.lastFetchedOn = [NSDate date];
           
-          [_exchange save];
+          DiscountCalculatorDoc * doc = [[DiscountCalculatorDoc alloc] init];
+          doc.data = _exchange;
+          [doc saveData];
           
-          NSString * originalHome = [[homeCurrency.formatter stringFromNumber:_originalPrice] stringByAppendingString:@"  "];
-          NSString * discountHome = [[homeCurrency.formatter stringFromNumber:_discountPrice]stringByAppendingString:@"  "];
-          NSString * finalHome    = [[homeCurrency.formatter stringFromNumber:_finalPrice]stringByAppendingString:@"  "];
-          
-          NSString * originalForeign = [foreignCurrency.formatter stringFromNumber:[_originalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]]];
-          NSString * discountForeign = [foreignCurrency.formatter stringFromNumber:[_discountPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]]];
-          NSString * finalForeign    = [foreignCurrency.formatter stringFromNumber:[_finalPrice decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithFloat:[_exchange.rate floatValue]]]];
-          
-          NSArray * views = [[self navigationController] viewControllers];
-          CalculatorViewController * calcVC = views[0];
-          
-          calcVC.originalPrice.text = [originalHome stringByAppendingString:originalForeign];
-          calcVC.discountPrice.text = [discountHome stringByAppendingString:discountForeign];
-          calcVC.finalPrice.text    = [finalHome stringByAppendingString:finalForeign];
-          
-          [[self navigationController] popToRootViewControllerAnimated:YES];
+          [self applyChanges];
         }
       }
       else {
@@ -179,8 +202,10 @@
   _connection = nil;
   _buffer     = nil;
   
-  //self.textField.text = [error localizedDescription];
-  NSLog(@"Connection failed! Error - %@ %@",
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection failed!" message:@"The Internet connection appears to be offline." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+  [alert show];
+  
+  NSLog(@"Connection failed! Error: %@ %@",
         [error localizedDescription],
         [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 }

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ExchangeRate.h"
 
-@interface ForeignCurrencyViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,NSURLConnectionDelegate>
+@interface ForeignCurrencyViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,NSURLConnectionDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray * tableData;
 

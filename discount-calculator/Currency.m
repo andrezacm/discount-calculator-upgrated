@@ -14,7 +14,8 @@
 enum {
   denmark = 0,
   india,
-  pound
+  pound,
+  china
 };
 
 Currency * _secretCurrencies[11];
@@ -68,6 +69,14 @@ Currency * _secretCurrencies[11];
     _secretCurrencies[pound] = [[Currency alloc] initWithEntity:@"UNITED KINGDOM" currency:@"Pound Sterling" code:@"GBP" decimalPlaces:2 symbol:@"£"];
   }
   return _secretCurrencies[pound];
+}
+
+// CHINA	Yuan Renminbi	CNY	156	2
++(Currency *)theChineseYuan {
+  if (_secretCurrencies[china] == nil) {
+    _secretCurrencies[china] = [[Currency alloc] initWithEntity:@"UNITED KINGDOM" currency:@"Yuan Renminbi" code:@"CNY" decimalPlaces:2 symbol:@"¥"];
+  }
+  return _secretCurrencies[china];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {

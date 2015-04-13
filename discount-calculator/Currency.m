@@ -18,7 +18,8 @@ enum {
   china,
   euro,
   japan,
-  us
+  us,
+  canada
 };
 
 Currency * _secretCurrencies[11];
@@ -104,6 +105,14 @@ Currency * _secretCurrencies[11];
     _secretCurrencies[us] = [[Currency alloc] initWithEntity:@"UNITED STATES" currency:@"US Dollar" code:@"USD" decimalPlaces:2 symbol:@"$"];
   }
   return _secretCurrencies[us];
+}
+
+// CANADA	Canadian Dollar	CAD	124	2
++(Currency *)theCanadianDollar {
+  if (_secretCurrencies[canada] == nil) {
+    _secretCurrencies[canada] = [[Currency alloc] initWithEntity:@"CANADA" currency:@"Canadian Dollar" code:@"CAD" decimalPlaces:2 symbol:@"$"];
+  }
+  return _secretCurrencies[canada];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {

@@ -32,5 +32,14 @@
   +(Currency *)theDanishKroner;
   +(Currency *)theIndianRupee;
   +(Currency *)theBritishPound;
+  +(Currency *)theChineseYuan;
+  +(Currency *)theEuropeanEuro;
+  +(Currency *)theJapaneseYen;
+  +(Currency *)theUSDollar;
+  +(Currency *)theCanadianDollar;
+  +(Currency *)theMexicanPeso;
+  +(Currency *)theRussianRuble;
+  +(Currency *)theBrazilianReal;
+  +(Currency *)currency:(NSString *)alphacode;
 
 @end

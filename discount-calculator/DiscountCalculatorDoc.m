@@ -55,8 +55,8 @@
   
   ExchangeRate * exchange = [[ExchangeRate alloc] init];
   
-  exchange.srcCurrency = [self tempCurrency:srcCurrency];
-  exchange.dstCurrency = [self tempCurrency:dstCurrency];
+  exchange.srcCurrency = [Currency currency:srcCurrency];
+  exchange.dstCurrency = [Currency currency:dstCurrency];
   exchange.rate = rate;
   exchange.lastFetchedOn = lastFetchedOn;
   exchange.expireAfterHours = expireAfterHours;
@@ -64,19 +64,6 @@
   _data = exchange;
   
   return _data;
-}
-
--(Currency *)tempCurrency:(NSString *)code {
-  if ([code  isEqual: @"GBP"]) {
-    return [Currency theBritishPound];
-  }
-  if ([code  isEqual: @"INR"]) {
-    return [Currency theIndianRupee];
-  }
-  if ([code  isEqual: @"DKK"]) {
-    return [Currency theDanishKroner];
-  }
-  return [Currency theDanishKroner];
 }
 
 -(void)saveData {

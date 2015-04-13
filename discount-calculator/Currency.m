@@ -142,6 +142,20 @@ Currency * _secretCurrencies[11];
   return _secretCurrencies[brazil];
 }
 
++(Currency *)currency:(NSString *)alphacode {
+  if ([alphacode  isEqual: @"DKK"]) return _secretCurrencies[denmark];
+  if ([alphacode  isEqual: @"INR"]) return _secretCurrencies[india];
+  if ([alphacode  isEqual: @"GBP"]) return _secretCurrencies[pound];
+  if ([alphacode  isEqual: @"CNY"]) return _secretCurrencies[china];
+  if ([alphacode  isEqual: @"EUR"]) return _secretCurrencies[euro];
+  if ([alphacode  isEqual: @"JPY"]) return _secretCurrencies[japan];
+  if ([alphacode  isEqual: @"USD"]) return _secretCurrencies[us];
+  if ([alphacode  isEqual: @"CAD"]) return _secretCurrencies[canada];
+  if ([alphacode  isEqual: @"MXN"]) return _secretCurrencies[mexico];
+  if ([alphacode  isEqual: @"RUB"]) return _secretCurrencies[russia];
+  return _secretCurrencies[brazil];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder {
   [coder encodeObject:entity    forKey:@"entity"];
   [coder encodeObject:currency  forKey:@"currency"];

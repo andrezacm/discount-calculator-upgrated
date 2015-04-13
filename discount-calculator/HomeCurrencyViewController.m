@@ -36,7 +36,7 @@
   
   self.view = tableView;
   
-  self.tableData = [NSMutableArray arrayWithObjects: [Currency theBritishPound], [Currency theDanishKroner], [Currency theIndianRupee], nil];
+  self.tableData = [NSMutableArray arrayWithObjects: [Currency theBritishPound], [Currency theDanishKroner], [Currency theIndianRupee], [Currency theChineseYuan], [Currency theEuropeanEuro], [Currency theJapaneseYen], [Currency theUSDollar], [Currency theCanadianDollar], [Currency theMexicanPeso], [Currency theRussianRuble], [Currency theBrazilianReal], nil];
 }
 
 - (void)didReceiveMemoryWarning {

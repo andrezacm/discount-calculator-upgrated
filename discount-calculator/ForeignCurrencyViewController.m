@@ -134,8 +134,9 @@
       _buffer = [NSMutableData data];
       [_connection start];
     } else {
-      //self.textField.text = @"Connection Failed";
-      NSLog(@"Connection Failed >>");
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection failed!" message:@"The Internet connection appears to be offline." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+      [alert show];
+      NSLog(@"Connection Failed");
     }
   } else {
     [self applyChanges];

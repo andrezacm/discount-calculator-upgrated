@@ -21,7 +21,8 @@ enum {
   us,
   canada,
   mexico,
-  russia
+  russia,
+  brazil
 };
 
 Currency * _secretCurrencies[11];
@@ -131,6 +132,14 @@ Currency * _secretCurrencies[11];
     _secretCurrencies[russia] = [[Currency alloc] initWithEntity:@"RUSSIAN FEDERATION" currency:@"Russian Ruble" code:@"RUB" decimalPlaces:2 symbol:@"₽"];
   }
   return _secretCurrencies[russia];
+}
+
+// BRAZIL	Brazilian Real	BRL	986	2
++(Currency *)theBrazilianReal {
+  if (_secretCurrencies[brazil] == nil) {
+    _secretCurrencies[brazil] = [[Currency alloc] initWithEntity:@"BRAZIL" currency:@"Brazilian Real" code:@"BRL" decimalPlaces:2 symbol:@"R$"];
+  }
+  return _secretCurrencies[brazil];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {

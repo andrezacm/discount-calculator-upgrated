@@ -14,11 +14,11 @@ the exchange rates to the computer’s file system.
 ##Features
 
 The Discount Calculator is an iPhone app which allows a user to enter a dollar amount, discount rate, additional discount rate, and
-sales tax rate to calculate and visualize the cost of an item. The Discount Calculator provides a simple graph to illustrate how much saved from the original price.  
+sales tax rate to calculate and visualize the cost of an item. The Discount Calculator provides a simple graph to illustrate how much saved from the original price. Moreover, the calculator enable the user to convert the currency between a home currency and a foreign currency. 
 
 ##Usage
 
-The user mus enter the values of  dollar amount, discount rate, additional discount rate, and sales tax and press "calculate" buttom. The program will show the values of price with tax, price with discounts and price with discount and tax. The user must to swipe to left to see the graphs. And, press "back" buttom to go back to initial form.
+The user must enter the values of  dollar amount, discount rate, additional discount rate, and sales tax and press "calculate" buttom. The program will show the values of price with tax, price with discounts and price with discount and tax. The user must to swipe to left to see the graphs. And, press "back" buttom to go back to initial form. To use the currency converter, the user must swipe to right to see an screen wich shows a list of 11 currencies to choose. After choose the home curency, the user must choose the foreign currency. The application will turn back to the first screem and show the discount value converted.
 
 ##Bugs
 

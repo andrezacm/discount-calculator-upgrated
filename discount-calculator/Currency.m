@@ -20,7 +20,8 @@ enum {
   japan,
   us,
   canada,
-  mexico
+  mexico,
+  russia
 };
 
 Currency * _secretCurrencies[11];
@@ -122,6 +123,14 @@ Currency * _secretCurrencies[11];
     _secretCurrencies[mexico] = [[Currency alloc] initWithEntity:@"MEXICO" currency:@"Mexican Peso" code:@"MXN" decimalPlaces:2 symbol:@"$"];
   }
   return _secretCurrencies[mexico];
+}
+
+// RUSSIAN FEDERATION	Russian Ruble	RUB	643	2
++(Currency *)theRussianRuble {
+  if (_secretCurrencies[russia] == nil) {
+    _secretCurrencies[russia] = [[Currency alloc] initWithEntity:@"RUSSIAN FEDERATION" currency:@"Russian Ruble" code:@"RUB" decimalPlaces:2 symbol:@"₽"];
+  }
+  return _secretCurrencies[russia];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
